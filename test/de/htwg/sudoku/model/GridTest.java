@@ -175,6 +175,7 @@ public class GridTest {
         assertEquals(grid4.getCell(2,1),symCell);
     }
 
+
 /* Methods */
     private boolean assertReachAllCells(Grid grid) {
         int cellsPerEdge=grid.getSize();
