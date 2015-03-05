@@ -38,6 +38,21 @@ public class GridTest {
     }
 
     @Test
+    public void testGetBlockSize() {
+        assertEquals(1,grid1.getBlockSize());
+        assertEquals(2,grid4.getBlockSize());
+        assertEquals(3,grid9.getBlockSize());
+    }
+
+    @Test
+    public void testSetCell(){
+        assertEquals(0,grid1.getCell(0,0).getValue());
+
+        grid1.setCell(0,0,1);
+        assertEquals(1,grid1.getCell(0,0).getValue());
+    }
+
+    @Test
     public void testGetCell() {
         assertReachAllCells(grid1);
     }

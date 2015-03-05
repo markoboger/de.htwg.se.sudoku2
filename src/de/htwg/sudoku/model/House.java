@@ -33,10 +33,6 @@ public class House {
         return cells;
     }
 
-    public void setCells(Cell[] cells) {
-        this.cells = cells;
-    }
-
     public Cell getCell(int index) {
         return getCells()[index];
     }

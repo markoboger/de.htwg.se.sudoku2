@@ -74,30 +74,6 @@ public class Grid {
         cells[row][column].setValue(value);
     }
 
-    public House[] getRows() {
-        return rows;
-    }
-
-    public void setRows(House[] rows) {
-        this.rows = rows;
-    }
-
-    public House[] getColumns() {
-        return columns;
-    }
-
-    public void setColumns(House[] columns) {
-        this.columns = columns;
-    }
-
-    public House[] getBlocks() {
-        return blocks;
-    }
-
-    public void setBlocks(House[] blocks) {
-        this.blocks = blocks;
-    }
-
     public int getBlockSize() {
         return blockSize;
     }
