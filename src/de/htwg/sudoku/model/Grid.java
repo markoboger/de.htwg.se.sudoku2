@@ -1,5 +1,7 @@
 package de.htwg.sudoku.model;
 
+import java.util.BitSet;
+
 /**
  * The Grid is the playing field of a Sudoku puzzle.
  * It consists of Cells.
@@ -82,6 +84,9 @@ public class Grid {
         this.blockSize = blockSize;
     }
 
+    protected House getRow(int index) {
+        return rows[index];
+    }
 
 /* Methods */
 
@@ -113,4 +118,76 @@ public class Grid {
         return (int) Math.abs(Math.sqrt(number));
     }
 
+    /**
+     * calculates all values that are still valid candidates at the coordinate
+     * (row, column).
+     *
+     * @param row
+     * @param column
+     * @return is encoded in a BitSet: if BitSet at index 1 is true, the value 1
+     *         is a valid candidate.
+     */
+    public BitSet candidates(int row, int column) {
+        BitSet candidates = new BitSet(getSize() + 1);
+        candidates.set(1, getSize() + 1, true);
+        candidates.and(rows[row].candidates());
+        candidates.and(columns[column].candidates());
+        candidates.and(blocks[blockAt(row, column)].candidates());
+        return candidates;
+    }
+
+    public void reset() {
+        for (int row = 0; row < getSize(); row++) {
+            for (int column = 0; column < getSize(); column++) {
+                cells[row][column].setValue(0);
+                cells[row][column].setGiven(false);
+                cells[row][column].setShowCandidates(false);
+            }
+        }
+    }
+
+    public void create() {
+        reset();
+        for (int row = 0; row < getSize(); row++) {
+            for (int column = 0; column < getSize(); column++) {
+                if (getCell(row, column).isSet()) {
+                    getCell(row, column).setGiven(true);
+                }
+            }
+        }
+    }
+
+    /**
+     * returns a string of the form +---+ (i.e. in the case of blockSize = 1)
+     */
+    public String blockSeparator(int blockSize) {
+        StringBuffer result = new StringBuffer("+");
+        for (int i = 0; i < blockSize; i++) {
+            for (int j = 0; j < blockSize * 2 + 1; j++) {
+                result.append("-");
+            }
+            result.append("+");
+        }
+        return result.toString();
+    }
+
+    /**
+     * returns a String of the form (i.e for size = 1) +---+ | | +---+
+     */
+    public String toString() {
+        return toString(" ");
+    }
+
+    public String toString(String zero) {
+        String newLine = System.getProperty("line.separator");
+        String result = blockSeparator(blockSize) + newLine;
+        for (int row = 0; row < getSize(); row++) {
+            result = result + getRow(row).toString(zero) + newLine;
+            if ((row + 1) % blockSize == 0) {
+                result = result + blockSeparator(blockSize) + newLine;
+            }
+
+        }
+        return result;
+    }
 }

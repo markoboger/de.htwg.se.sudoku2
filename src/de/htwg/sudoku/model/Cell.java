@@ -7,18 +7,20 @@ package de.htwg.sudoku.model;
  */
 public class Cell {
 
-/* Fields */
+    /* Fields */
     private int value;
     private int row;
     private int column;
+    private boolean given;
+    private boolean showCandidates;
 
-/* Constructors */
+    /* Constructors */
     public Cell(int row, int column) {
         setRow(row);
         setColumn(column);
     }
 
-/* Getter and Setter */
+    /* Getter and Setter */
     public int getValue() {
         return value;
     }
@@ -43,5 +45,50 @@ public class Cell {
         this.column = column;
     }
 
-/* Methods */
+    public boolean isSet() {
+        return value == 0 ? false : true;
+    }
+
+    public boolean isUnSet() {
+        return !isSet();
+    }
+
+    public void setGiven(boolean b) {
+        given = b;
+    }
+
+    public boolean isGiven() {
+        return given;
+    }
+
+    public void setShowCandidates(boolean showCandidates) {
+        this.showCandidates = showCandidates;
+    }
+
+    public boolean isShowCandidates() {
+        return showCandidates;
+    }
+
+    /* Methods */
+    public void reset() {
+        setValue(0);
+        setGiven(false);
+        setShowCandidates(false);
+    }
+
+    public void toggleShowCandidates() {
+        showCandidates = !showCandidates;
+    }
+
+    public String mkString() {
+        return "(" + row + "," + column + ") = " + value;
+    }
+
+    public String toString(String zero) {
+        if (value == 0) {
+            return zero;
+        } else {
+            return "" + value;
+        }
+    }
 }
