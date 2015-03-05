@@ -37,5 +37,14 @@ public class House {
         this.cells = cells;
     }
 
+    public Cell getCell(int index) {
+        return getCells()[index];
+    }
+
+    public void setCell(int index, Cell cell) {
+        getCells()[index] = cell;
+    }
+
+
 /* Methods */
 }
