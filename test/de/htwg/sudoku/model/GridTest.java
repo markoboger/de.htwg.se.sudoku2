@@ -145,6 +145,36 @@ public class GridTest {
         assertEquals("+---+"+newLine+"| 1 |"+newLine+"+---+"+newLine, grid1.toString());
     }
 
+    @Test
+    public void testGetRandomCell() {
+        // A random cell out of grid1 has to be cell(0,0) with value 0
+        Cell pseudoRandomCell = grid1.getRandomCell();
+        assertEquals(0, pseudoRandomCell.getColumn());
+        assertEquals(0, pseudoRandomCell.getRow());
+        assertEquals(0,pseudoRandomCell.getValue());
+
+        // A random cell out of grid4 has to be unset
+        Cell realRandomCell = grid4.getRandomCell();
+        assertTrue(realRandomCell.isUnSet());
+    }
+
+    @Test
+    public void testGetSymmetricCell() {
+        Cell cell, symCell;
+
+        cell = grid4.getCell(0,0);
+        symCell = grid4.getSymmetricCell(cell);
+        assertEquals(grid4.getCell(3, 3),symCell);
+
+        cell = grid4.getCell(0,3);
+        symCell = grid4.getSymmetricCell(cell);
+        assertEquals(grid4.getCell(3,0),symCell);
+
+        cell = grid4.getCell(1,2);
+        symCell = grid4.getSymmetricCell(cell);
+        assertEquals(grid4.getCell(2,1),symCell);
+    }
+
 /* Methods */
     private boolean assertReachAllCells(Grid grid) {
         int cellsPerEdge=grid.getSize();
