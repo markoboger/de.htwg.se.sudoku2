@@ -2,7 +2,7 @@ package de.htwg.sudoku.model;
 
 /**
  * A House is a logical collection of Cells.
- * It is an abstraction over Rows, Colums, and Blocks in a Sudoku puzzle.
+ * It is an abstraction over Rows, Columns, and Blocks in a Sudoku puzzle.
  * Its size is the number of cells it references.
  */
 public class House {
