@@ -1,6 +1,7 @@
 package de.htwg.sudoku.model;
 
 import java.util.BitSet;
+import java.util.Random;
 
 /**
  * The Grid is the playing field of a Sudoku puzzle.
@@ -136,18 +137,23 @@ public class Grid {
         return candidates;
     }
 
+    public int getCandidate(int row, int column) {
+        Random random = new Random();
+        int maxindex = this.candidates(row, column).cardinality();
+        return candidates(row, column).nextSetBit(random.nextInt(maxindex));
+    }
+
     public void reset() {
         for (int row = 0; row < getSize(); row++) {
             for (int column = 0; column < getSize(); column++) {
-                cells[row][column].setValue(0);
-                cells[row][column].setGiven(false);
-                cells[row][column].setShowCandidates(false);
+                getCell(row,column).reset();
             }
         }
     }
 
     public void create() {
         reset();
+        fillSymmetrically();
         for (int row = 0; row < getSize(); row++) {
             for (int column = 0; column < getSize(); column++) {
                 if (getCell(row, column).isSet()) {
@@ -156,6 +162,55 @@ public class Grid {
             }
         }
     }
+
+    public void fillSymmetrically() {
+        for (int i = 0; i < getSize(); i++) {
+            Cell cell1 = getRandomCell();
+            Cell cell2 = getSymmetricCell(cell1);
+            cell1.setValue(getCandidate(cell1.getRow(), cell1.getColumn()));
+            cell2.setValue(getCandidate(cell2.getRow(), cell2.getColumn()));
+        }
+
+    }
+
+    public Cell getRandomCell() {
+        Random random = new Random();
+        Cell[] unsetCells = getUnsetCells();
+
+        return unsetCells[random.nextInt(unsetCells.length)];
+    }
+
+    Cell getSymmetricCell(Cell cell) {
+        int row = cell.getRow();
+        int column = cell.getColumn();
+        int symmetricRow = (getSize() - 1) - row;
+        int symmetricColumn = (getSize() - 1) - column;
+
+        return getCell(symmetricRow, symmetricColumn);
+    }
+
+    public Cell[] getUnsetCells() {
+        int i = 0;
+        Cell[] setCells = new Cell[countUnsetCells()];
+        for (int row = 0; row < getSize(); row++) {
+            for (int column = 0; column < getSize(); column++) {
+                if (getCell(row, column).isUnSet()) {
+                    setCells[i] = getCell(row, column);
+                    i++;
+                }
+            }
+        }
+        return setCells;
+    }
+
+    public int countUnsetCells() {
+        int count = 0;
+        for (int r = 0; r < getSize(); r++) {
+            count += getRow(r).countUnsetCells();
+        }
+        return count;
+    }
+
 
     /**
      * returns a string of the form +---+ (i.e. in the case of blockSize = 1)

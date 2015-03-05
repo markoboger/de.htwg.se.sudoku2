@@ -38,5 +38,55 @@ public class CellTest {
 
     }
 
+    @Test
+    public void testIsGiven() {
+        assertFalse(cell.isGiven());
+        cell.setGiven(true);
+        assertTrue(cell.isGiven());
+    }
+
+    @Test
+    public void testIsSet() {
+        assertFalse(cell.isSet());
+        assertTrue(cell.isUnSet());
+        cell.setValue(3);
+        assertTrue(cell.isSet());
+        assertFalse(cell.isUnSet());
+    }
+
+    @Test
+    public void testToggleShowCandidates() {
+        assertFalse(cell.isShowCandidates());
+        cell.toggleShowCandidates();
+        assertTrue(cell.isShowCandidates());
+    }
+
+    @Test
+    public void testReset() {
+        cell.setGiven(true);
+        cell.toggleShowCandidates();
+        cell.setValue(1);
+        cell.reset();
+        assertFalse(cell.isGiven());
+        assertFalse(cell.isShowCandidates());
+        assertEquals(0, cell.getValue());
+    }
+
+    @Test
+    public void testMkString() {
+        assertEquals("(1,2) = 0", cell.mkString());
+        cell.setValue(3);
+        assertEquals("(1,2) = 3", cell.mkString());
+    }
+
+    @Test
+    public void testToString() {
+        assertEquals("-", cell.toString("-"));
+        cell.setValue(3);
+        assertEquals("3", cell.toString("-"));
+    }
+
+
+
 /* Teardown */
 }

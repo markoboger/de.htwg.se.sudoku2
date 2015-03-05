@@ -9,6 +9,7 @@ import org.junit.Test;
 public class GridTest {
 
 /* Fields */
+    String newLine = System.getProperty("line.separator");
     private Grid grid1, grid4, grid9;
 
 /* Setup */
@@ -48,7 +49,7 @@ public class GridTest {
     public void testSetCell(){
         assertEquals(0,grid1.getCell(0,0).getValue());
 
-        grid1.setCell(0,0,1);
+        grid1.setCell(0, 0, 1);
         assertEquals(1,grid1.getCell(0,0).getValue());
     }
 
@@ -128,6 +129,20 @@ public class GridTest {
         assertEquals(1,grid4.cellInBlockAt(1,2));
         assertEquals(2,grid4.cellInBlockAt(0,3));
         assertEquals(3,grid4.cellInBlockAt(1,3));
+    }
+
+    @Test
+    public void testBlockSeparator() {
+        assertEquals("+---+", grid1.blockSeparator(1));
+        assertEquals("+-----+-----+", grid1.blockSeparator(2));
+        assertEquals("+-------+-------+-------+", grid1.blockSeparator(3));
+    }
+
+    @Test
+    public void testToString() {
+        assertEquals("+---+"+newLine+"|   |"+newLine+"+---+"+newLine, grid1.toString());
+        grid1.setCell(0,0,1);
+        assertEquals("+---+"+newLine+"| 1 |"+newLine+"+---+"+newLine, grid1.toString());
     }
 
 /* Methods */

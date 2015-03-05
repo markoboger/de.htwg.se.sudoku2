@@ -68,9 +68,31 @@ public class House {
         return candidates;
     }
 
+    public int countSetCells() {
+        int count = 0;
+        for (int index = 0; index < getSize(); index++) {
+            if (getCells()[index].getValue() > 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int countUnsetCells() {
+        int count = 0;
+        for (int index = 0; index < getSize(); index++) {
+            if (getCells()[index].getValue() == 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+
     /**
      * returns a String of the form | 1 2 3 | 4 5 6 | 7 8 9 |
      */
+    @Override
     public String toString() {
         return toString(" ");
     }
