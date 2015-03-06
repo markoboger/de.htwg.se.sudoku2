@@ -32,6 +32,10 @@ public class SudokuController extends Observable {
         notifyObservers();
     }
 
+    public int getSize() {
+        return grid.getSize();
+    }
+
     public void setValue(int row, int column, int value) {
         Cell cell = grid.getCell(row, column);
         if (cell.isUnSet()) {

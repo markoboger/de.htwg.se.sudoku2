@@ -19,6 +19,27 @@ public class SudokuControllerTest {
 /* Tests */
     @Test
     public void testGetStatus() {
-        assertEquals("Welcome to HTWG Sudoku!", controller1.getStatus());
+        assertEquals(GameStatus.WELCOME, controller1.getStatus());
+        assertEquals(GameStatus.WELCOME, controller4.getStatus());
+        assertEquals(GameStatus.WELCOME, controller9.getStatus());
+    }
+
+    @Test
+    public void testSetGrid() {
+        assertEquals(1,controller1.getSize());
+        controller1.setGrid(4);
+        assertEquals(4,controller1.getSize());
+        controller1.setGrid(9);
+        assertEquals(9,controller1.getSize());
+        controller1.setGrid(4);
+        assertEquals(4,controller1.getSize());
+        controller1.setGrid(1);
+        assertEquals(1,controller1.getSize());
+    }
+
+    @Test
+    public void testSetValue() {
+        controller4.setValue(1,1,1);
+        assertEquals(1,controller4.getValue(1,1));
     }
 }
