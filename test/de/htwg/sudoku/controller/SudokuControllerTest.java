@@ -39,9 +39,21 @@ public class SudokuControllerTest {
     }
 
     @Test
+    public void testSetGridWithIllegalArgument() {
+        controller4.setGrid(3);
+        assertEquals(GameStatus.ILLEGAL_ARGUMENT,controller4.getStatus());
+    }
+
+
+    @Test
     public void testSetValue() {
         controller4.setValue(1,1,1);
         assertEquals(1,controller4.getValue(1,1));
+        assertEquals(GameStatus.CELL_SET_SUCCESS,controller4.getStatus());
+
+        controller4.setValue(1,1,1);
+        assertEquals(1,controller4.getValue(1,1));
+        assertEquals(GameStatus.CELL_SET_FAIL,controller4.getStatus());
     }
 
     @Test
