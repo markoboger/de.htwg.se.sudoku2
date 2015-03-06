@@ -63,7 +63,7 @@ public class House {
         BitSet candidates = new BitSet(getSize() + 1);
         candidates.set(1, getSize() + 1, true);
         for (int index = 0; index < getSize(); index++) {
-            candidates.set(getCells()[index].getValue(), false);
+            candidates.set(getCell(index).getValue(), false);
         }
         return candidates;
     }
@@ -71,7 +71,7 @@ public class House {
     public int countSetCells() {
         int count = 0;
         for (int index = 0; index < getSize(); index++) {
-            if (getCells()[index].getValue() > 0) {
+            if (getCell(index).getValue() > 0) {
                 count++;
             }
         }
@@ -81,7 +81,7 @@ public class House {
     public int countUnsetCells() {
         int count = 0;
         for (int index = 0; index < getSize(); index++) {
-            if (getCells()[index].getValue() == 0) {
+            if (getCell(index).getValue() == 0) {
                 count++;
             }
         }
@@ -100,7 +100,7 @@ public class House {
     public String toString(String zero) {
         String result = "|";
         for (int index = 0; index < size; index++) {
-            result += " " + getCells()[index].toString(zero);
+            result += " " + getCell(index).toString(zero);
             if (((index + 1) % blockSize) == 0) {
                 result += " |";
             }

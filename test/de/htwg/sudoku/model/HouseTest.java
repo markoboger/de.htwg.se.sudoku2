@@ -78,10 +78,29 @@ public class HouseTest {
         assertEquals("| . . . | . . . | . . . |", house9.toString("."));
     }
 
+    @Test
     public void testToString() {
         assertEquals("|   |", house1.toString());
         house1.getCell(0).setValue(1);
         assertEquals("| 1 |", house1.toString());
+    }
+
+    @Test
+    public void testCountSetCells() {
+        assertEquals(0,house1.countSetCells());
+        house1.getCell(0).setValue(1);
+        assertEquals(1,house1.countSetCells());
+
+        assertEquals(0,house4.countSetCells());
+        house4.getCell(0).setValue(1);
+        assertEquals(1,house4.countSetCells());
+        house4.getCell(1).setValue(2);
+        assertEquals(2,house4.countSetCells());
+        house4.getCell(2).setValue(3);
+        assertEquals(3,house4.countSetCells());
+        house4.getCell(3).setValue(4);
+        assertEquals(4,house4.countSetCells());
+
     }
 
 }

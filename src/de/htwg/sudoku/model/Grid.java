@@ -137,6 +137,13 @@ public class Grid {
         return candidates;
     }
 
+    /**
+     * returns a random selection of the values still possible for a position in the Sudoku puzzle.
+     *
+     * @param row
+     * @param column
+     * @return a value that can still legally be set for this position
+     */
     public int getCandidate(int row, int column) {
         Random random = new Random();
         int maxindex = this.candidates(row, column).cardinality();

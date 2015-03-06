@@ -6,6 +6,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.BitSet;
+
 public class GridTest {
 
 /* Fields */
@@ -173,6 +175,78 @@ public class GridTest {
         cell = grid4.getCell(1,2);
         symCell = grid4.getSymmetricCell(cell);
         assertEquals(grid4.getCell(2,1),symCell);
+    }
+
+    @Test
+    public void testCandidates() {
+        BitSet expected1 = new BitSet(2);
+        expected1.set(1,2,true);
+        assertEquals(expected1, grid1.candidates(0, 0));
+
+        BitSet expected2 = new BitSet(5);
+        expected2.set(1,5,true);
+        assertEquals(expected2, grid4.candidates(0, 0));
+
+        BitSet expected3 = new BitSet(5);
+        expected3.set(2,5,true);
+        grid4.getCell(0,1).setValue(1);
+        assertEquals(expected3, grid4.candidates(0, 0));
+    }
+
+    @Test
+    public void testGetCandidate() {
+        assertEquals(1, grid1.getCandidate(0, 0));
+
+        grid4.getCell(0,1).setValue(1);
+        grid4.getCell(0,2).setValue(2);
+        grid4.getCell(0,3).setValue(3);
+        assertEquals(4, grid4.getCandidate(0, 0));
+    }
+
+    @Test
+    public void testReset() {
+        grid1.setCell(0,0,1);
+        grid1.reset();
+
+        assertEquals(0, grid1.getCell(0, 0).getValue());
+    }
+
+    @Test
+    public void testFillSymmetrically() {
+        Cell cell, symCell;
+        grid4.fillSymmetrically();
+
+        cell =grid4.getRandomCell();
+        symCell = grid4.getSymmetricCell(cell);
+        assertTrue(cell.isSet()==symCell.isSet());
+        assertTrue(cell.isUnSet()==symCell.isUnSet());
+
+        grid9.fillSymmetrically();
+
+        cell =grid9.getRandomCell();
+        symCell = grid9.getSymmetricCell(cell);
+        assertTrue(cell.isSet()==symCell.isSet());
+        assertTrue(cell.isUnSet()==symCell.isUnSet());
+    }
+
+    @Test
+    public void testCreate() {
+        Cell cell, symCell;
+        grid4.create();
+
+        cell =grid4.getRandomCell();
+        symCell = grid4.getSymmetricCell(cell);
+        assertTrue(cell.isSet()==symCell.isSet());
+        assertTrue(cell.isUnSet()==symCell.isUnSet());
+        assertTrue(cell.isGiven()==symCell.isGiven());
+
+        grid9.create();
+
+        cell =grid9.getRandomCell();
+        symCell = grid9.getSymmetricCell(cell);
+        assertTrue(cell.isSet()==symCell.isSet());
+        assertTrue(cell.isUnSet()==symCell.isUnSet());
+        assertTrue(cell.isGiven()==symCell.isGiven());
     }
 
 
