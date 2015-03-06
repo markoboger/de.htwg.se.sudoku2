@@ -6,16 +6,17 @@ import de.htwg.sudoku.controller.SudokuController;
 import java.util.Scanner;
 
 public final class Sudoku {
+/* Fields */
 
     private static Scanner scanner;
     private static TextUI tui;
     private SudokuController controller;
     private static Sudoku sudoku;
 
-    private Sudoku() {
+/* Constructor */
+    public Sudoku() {
 
-        // Build up the application, resolving dependencies automatically by
-        // Guice
+        // Build up the application
         controller = new SudokuController(9);
 
         tui = new TextUI(controller);
@@ -25,6 +26,7 @@ public final class Sudoku {
         controller.create();
     }
 
+/* Methods */
     public static void main(String[] args) {
 
         sudoku = new Sudoku();
