@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Observable implements IObservable {
-
+/* Fields */
     private List<IObserver> subscribers = new ArrayList<IObserver>(2);
 
+/* Methods */
     public void addObserver(IObserver s) {
         subscribers.add(s);
     }
