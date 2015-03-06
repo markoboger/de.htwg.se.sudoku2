@@ -1,7 +1,6 @@
 package util.observer;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Observable implements IObservable {
@@ -26,8 +25,7 @@ public class Observable implements IObservable {
 
     @Override
     public void notifyObservers(Event e) {
-        for (Iterator<IObserver> iter = subscribers.iterator(); iter.hasNext();) {
-            IObserver observer = iter.next();
+        for (IObserver observer: subscribers) {
             observer.update(e);
         }
     }
