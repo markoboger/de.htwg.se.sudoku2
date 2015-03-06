@@ -25,7 +25,7 @@ public class Grid {
     private House[] blocks;
 
 /* Constructors */
-    public Grid(int size) {
+    public Grid(int size) throws IllegalArgumentException{
         if (size < 1 || MAXSIZE < size) {
             throw new IllegalArgumentException(
                     "size must be between 1 and " + MAXSIZE);

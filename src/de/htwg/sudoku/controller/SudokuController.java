@@ -11,30 +11,46 @@ import java.util.BitSet;
  */
 public class SudokuController extends Observable {
 /* Fields */
-    private String statusLine = "Welcome to HTWG Sudoku!";
+    private GameStatus status = GameStatus.WELCOME;
+    private String statusText = "";
     private int highlighted = 0;
     private Grid grid;
 
 /* Constructors */
     public SudokuController(int size) {
-        this.grid = new Grid(size);
+        setGrid(size);
     }
 
 /* Getter and Setter */
-    public void setValue(int row, int column, int value) {
-        Cell cell = grid.getCell(row, column);
-        if (cell.isUnSet()) {
-            cell.setValue(value);
-            statusLine = "The cell " + cell.mkString()
-                    + " was successfully set";
-        } else {
-            statusLine = "The cell " + cell.mkString() + " is already set";
+    public void setGrid(int size) {
+        try {
+            this.grid = new Grid(size);
+        } catch (IllegalArgumentException e){
+            status = GameStatus.ILLEGAL_ARGUMENT;
+            statusText= e.getMessage();
         }
         notifyObservers();
     }
 
-    public String getStatus() {
-        return statusLine;
+    public void setValue(int row, int column, int value) {
+        Cell cell = grid.getCell(row, column);
+        if (cell.isUnSet()) {
+            cell.setValue(value);
+            status = GameStatus.CELL_SET_SUCCESS;
+            statusText = cell.mkString();
+        } else {
+            status = GameStatus.CELL_SET_FAIL;
+            statusText = cell.mkString();
+        }
+        notifyObservers();
+    }
+
+    public GameStatus getStatus() {
+        return status;
+    }
+
+    public String getStatusText() {
+        return statusText;
     }
 
     public String getGridString() {
@@ -84,22 +100,25 @@ public class SudokuController extends Observable {
 
     public void reset() {
         grid.reset();
-        statusLine = "Sudoku was reset";
+        status = GameStatus.RESET;
+        statusText="";
         notifyObservers();
     }
 
     public void create() {
         grid.create();
         highlighted = 0;
-        statusLine = "New Sudoku Puzzle created";
+        status = GameStatus.CREATE;
+        statusText="";
         notifyObservers();
     }
 
     public void showCandidates(int row, int column) {
-        grid.getCell(row, column).toggleShowCandidates();
+        Cell cell = grid.getCell(row, column);
+        cell.toggleShowCandidates();
         BitSet set = grid.candidates(row, column);
-        statusLine = "Candidates at (" + row + "," + column + ") are "
-                + set.toString();
+        status = GameStatus.SHOW_CANDIDATES;
+        statusText = cell.mkString() +" : "+ set.toString();
         notifyObservers();
     }
 
