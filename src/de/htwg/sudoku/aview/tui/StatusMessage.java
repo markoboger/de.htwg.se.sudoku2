@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class StatusMessage {
 /* Fields */
-    static Hashtable<GameStatus,String> text = new Hashtable<GameStatus, String>();
+    static HashMap<GameStatus,String> text = new HashMap<GameStatus, String>();
 
 /* Constructors */
     public StatusMessage() {

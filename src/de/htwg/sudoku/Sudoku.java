@@ -20,7 +20,6 @@ public final class Sudoku {
         controller = new SudokuController(9);
 
         tui = new TextUI(controller);
-        tui.printTUI();
 
         // Create an initial game
         controller.create();

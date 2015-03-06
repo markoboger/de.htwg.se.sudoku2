@@ -9,11 +9,11 @@ import java.util.regex.Pattern;
 
 public class TextUI implements IObserver {
 
-    private static final int DOTSIZE = 1;
-    private static final int PLUSSIZE = 4;
-    private static final int HASHSIZE = 9;
-    private static final String NEWLINE = System.getProperty("line.separator");
-    private static final StatusMessage STATUS = new StatusMessage();
+    private final static int DOTSIZE = 1;
+    private final static int PLUSSIZE = 4;
+    private final static int HASHSIZE = 9;
+    private final static String NEWLINE = System.getProperty("line.separator");
+    private final static StatusMessage STATUS = new StatusMessage();
 
     private SudokuController controller;
 

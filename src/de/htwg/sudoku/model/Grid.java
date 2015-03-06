@@ -12,8 +12,7 @@ import java.util.Random;
 public class Grid {
 
 /* Fields */
-    private static final int MAXSIZE = 9;
-    private final static double EPSILON = 0.00001;
+    private final static int MAXSIZE = 9;
 
     private int size;
     private int blockSize;
@@ -104,7 +103,7 @@ public class Grid {
      * cell array at coordinate (row, column).
      */
     protected int cellInBlockAt(int row, int column) {
-        return ((row % blockSize) + ((column % blockSize) * blockSize));
+        return (row % blockSize) + ((column % blockSize) * blockSize);
     }
 
     public static int blocksPerEdge(int size) {
@@ -223,7 +222,7 @@ public class Grid {
      * returns a string of the form +---+ (i.e. in the case of blockSize = 1)
      */
     public String blockSeparator(int blockSize) {
-        StringBuffer result = new StringBuffer("+");
+        StringBuilder result = new StringBuilder("+");
         for (int i = 0; i < blockSize; i++) {
             for (int j = 0; j < blockSize * 2 + 1; j++) {
                 result.append("-");
@@ -236,6 +235,7 @@ public class Grid {
     /**
      * returns a String of the form (i.e for size = 1) +---+ | | +---+
      */
+    @Override
     public String toString() {
         return toString(" ");
     }
