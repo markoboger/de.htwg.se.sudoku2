@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 
 public class SudokuControllerTest {
 /* Fields */
+    String newLine = System.getProperty("line.separator");
     SudokuController controller1, controller4, controller9;
 
 /* Setup */
@@ -42,4 +43,32 @@ public class SudokuControllerTest {
         controller4.setValue(1,1,1);
         assertEquals(1,controller4.getValue(1,1));
     }
+
+    @Test
+    public void testCreate() {
+        controller4.create();
+        assertEquals(GameStatus.CREATE, controller4.getStatus());
+        assertEquals("",controller4.getStatusText());
+    }
+
+    @Test
+    public void testReset() {
+        controller4.reset();
+        assertEquals(GameStatus.RESET,controller4.getStatus());
+        assertEquals("",controller4.getStatusText());
+    }
+
+    @Test
+    public void testShowCandidates() {
+        controller4.create();
+        controller4.showCandidates(0,0);
+        assertEquals(GameStatus.SHOW_CANDIDATES, controller4.getStatus());
+    }
+
+    @Test
+    public void testGetGridString() {
+        String grid = controller1.getGridString();
+        assertEquals("+---+"+newLine+"|   |"+newLine+"+---+"+newLine,grid);
+    }
+
 }

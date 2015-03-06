@@ -34,8 +34,15 @@ public class TextUI implements IObserver {
             continu = false;
         } else if ( line.startsWith("r")) {
                 controller.reset();
+
         } else if ( line.startsWith("n")) {
             controller.create();
+        } else if ( line.startsWith(".")) {
+            controller.setGrid(1);
+        } else if ( line.startsWith("+")) {
+            controller.setGrid(4);
+        } else if ( line.startsWith("#")) {
+            controller.setGrid(9);
         } else
             // if the command line has the form 123, set the cell (1,2) to value 3
             if (line.matches("[0-9][0-9][0-9]")) {
@@ -47,11 +54,7 @@ public class TextUI implements IObserver {
                     int[] arg = readToArray(line);
                     controller.showCandidates(arg[0], arg[1]);
                 } else
-                    // if the command line has the form 1, highlight 1
-                    if (line.matches("[0-9]")) {
-                        int[] arg = readToArray(line);
-                        controller.highlight(arg[0]);
-                    } else {
+                    {
                         System.out.println("Illegal command");
                     }
         return continu;
@@ -72,6 +75,6 @@ public class TextUI implements IObserver {
         System.out.println(NEWLINE + controller.getGridString());
         System.out.println(NEWLINE + STATUS.text.get(controller.getStatus()) + controller.getStatusText());
         System.out.println(NEWLINE
-                + "Possible commands: q-quit, n-new, s-solve, r-reset, z-undo, y-redo, c-copy, p-paste, -,+,*-size, x-highlight, xy-show (x,y), xyz-set (x,y) to z");
+                + "Possible commands: q-quit, n-new, r-reset, .,+,#-size, xy-show (x,y), xyz-set (x,y) to z");
     }
 }
