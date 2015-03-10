@@ -35,7 +35,7 @@ public class TextUI implements IObserver {
     public boolean processInputLine(String line) {
         boolean continu = true;
         if (line.matches(".")) {
-            continu = processSingleCharInput(line, continu);
+            continu = processSingleCharInput(line);
         } else
             // if the command line has the form 12, get the candidates of cell (1,2)
             if (line.matches("[0-9][0-9]")) {
@@ -59,11 +59,10 @@ public class TextUI implements IObserver {
         controller.setValue(arg[0], arg[1], arg[2]);
     }
 
-    private boolean processSingleCharInput(String line, boolean continu) {
+    private boolean processSingleCharInput(String line) {
         switch (line) {
             case "q":
-                continu = false;
-                break;
+                return false;
             case "r":
                 controller.reset();
                 break;
@@ -87,7 +86,7 @@ public class TextUI implements IObserver {
             default:
                 LOGGER.entry("Illegal command: " + line);
         }
-        return continu;
+        return true;
     }
 
     private int[] readToArray(String line) {
