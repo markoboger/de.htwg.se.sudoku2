@@ -307,7 +307,7 @@ public class Grid {
             r++;
             if (r == getSize()) {
                 solutionCounter++;
-                return (numSolutions == solutionCounter);
+                return numSolutions == solutionCounter;
             }
         }
         // skip filled cells

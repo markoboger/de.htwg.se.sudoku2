@@ -58,20 +58,20 @@ public class TextUI implements IObserver {
             case "*":
                 controller.setGrid(LARGE_SIZE);
                 break;
+            default:
+                // if the command line has the form 123, set the cell (1,2) to value 3
+                if (line.matches("[0-9][0-9][0-9]")) {
+                    int[] arg = readToArray(line);
+                    controller.setValue(arg[0], arg[1], arg[2]);
+                } else
+                    // if the command line has the form 12, get the candidates of cell (1,2)
+                    if (line.matches("[0-9][0-9]")) {
+                        int[] arg = readToArray(line);
+                        controller.showCandidates(arg[0], arg[1]);
+                    } else {
+                        LOGGER.entry("Illegal command: " + line);
+                    }
         }
-        // if the command line has the form 123, set the cell (1,2) to value 3
-        if (line.matches("[0-9][0-9][0-9]")) {
-            int[] arg = readToArray(line);
-            controller.setValue(arg[0], arg[1], arg[2]);
-        } else
-            // if the command line has the form 12, get the candidates of cell (1,2)
-            if (line.matches("[0-9][0-9]")) {
-                int[] arg = readToArray(line);
-                controller.showCandidates(arg[0], arg[1]);
-            } else
-                {
-                    LOGGER.entry("Illegal command: " + line);
-                }
         return continu;
     }
 
