@@ -90,6 +90,6 @@ public class TextUI implements IObserver {
         LOGGER.entry(NEWLINE + controller.getGridString());
         LOGGER.entry(NEWLINE + StatusMessage.text.get(controller.getStatus()) + controller.getStatusText());
         LOGGER.entry(NEWLINE
-                + "Possible commands: q-quit, n-new, r-reset, .,+,#-size, xy-show (x,y), xyz-set (x,y) to z");
+                + "Possible commands: q-quit, n-new, r-reset, s-solve, .,+,#-size, xy-show (x,y), xyz-set (x,y) to z");
     }
 }
