@@ -327,4 +327,15 @@ public class Grid {
         getCell(r, c).setValue(0);
         return false;
     }
+
+    public boolean isSolved() {
+        for (int row = 0; row < getSize(); row++) {
+            for (int column = 0; column < getSize(); column++) {
+                if (cells[row][column].isUnSet()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

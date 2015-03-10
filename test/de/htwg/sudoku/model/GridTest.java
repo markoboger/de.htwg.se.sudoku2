@@ -249,8 +249,40 @@ public class GridTest {
         assertTrue(cell.isGiven()==symCell.isGiven());
     }
 
+    @Test
+    public void testSolve() {
+        assertTrue(grid1.solve());
+        assertEquals(2,grid1.getSteps());
+        assertEquals("+---+"+newLine+"| 1 |"+newLine+"+---+"+newLine, grid1.toString());
+        assertFalse(grid4.isSolved());
+        assertTrue(grid4.solve());
+        assertTrue(grid4.isSolved());
+        assertTrue(grid9.solve());
+        assertTrue(grid9.isSolved());
+    }
+    @Test
+    public void testSolveFilled() {
+        grid1.setCell(0, 0, 1);
+        assertTrue(grid1.solve());
+        assertEquals(2,grid1.getSteps());
+        grid4.setCell(0, 0, 1);
+        assertFalse(grid4.isSolved());
+        assertTrue(grid4.solve());
+        assertTrue(grid4.isSolved());
+        grid4.setCell(0, 0, 1);
+        assertTrue(grid9.solve());
+        assertTrue(grid9.isSolved());
+    }
 
-/* Methods */
+    @Test
+    public void testSolve2() {
+        assertFalse(grid1.solve(2));
+        assertTrue(grid4.solve(2));
+    }
+
+
+
+    /* Methods */
     private boolean assertReachAllCells(Grid grid) {
         int cellsPerEdge=grid.getSize();
         for (int row = 0; row < grid.getSize(); row++) {
