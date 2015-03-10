@@ -35,47 +35,58 @@ public class TextUI implements IObserver {
     public boolean processInputLine(String line) {
         boolean continu = true;
         if (line.matches(".")) {
-            switch (line) {
-                case "q":
-                    continu = false;
-                    break;
-                case "r":
-                    controller.reset();
-                    break;
-                case "n":
-                    controller.create();
-                    break;
-                case "s":
-                    controller.solve();
-                    break;
-                case ".":
-                case "-":
-                    controller.setGrid(SMALL_SIZE);
-                    break;
-                case "+":
-                    controller.setGrid(MEDIUM_SIZE);
-                    break;
-                case "#":
-                case "*":
-                    controller.setGrid(LARGE_SIZE);
-                    break;
-                default:
-                    LOGGER.entry("Illegal command: " + line);
-            }
+            continu = processSingleCharInput(line, continu);
         } else
+            // if the command line has the form 12, get the candidates of cell (1,2)
+            if (line.matches("[0-9][0-9]")) {
+                processDoubleCharInput(line);
+            } else
                 // if the command line has the form 123, set the cell (1,2) to value 3
                 if (line.matches("[0-9][0-9][0-9]")) {
-                    int[] arg = readToArray(line);
-                    controller.setValue(arg[0], arg[1], arg[2]);
+                    processTrippleCharInput(line);
                 } else
-                    // if the command line has the form 12, get the candidates of cell (1,2)
-                    if (line.matches("[0-9][0-9]")) {
-                        int[] arg = readToArray(line);
-                        controller.showCandidates(arg[0], arg[1]);
-                    } else {
-                        LOGGER.entry("Illegal command: " + line);
-                    }
+                    LOGGER.entry("Illegal command: " + line);
+        return continu;
+    }
 
+    private void processDoubleCharInput(String line) {
+        int[] arg = readToArray(line);
+        controller.showCandidates(arg[0], arg[1]);
+    }
+
+    private void processTrippleCharInput(String line) {
+        int[] arg = readToArray(line);
+        controller.setValue(arg[0], arg[1], arg[2]);
+    }
+
+    private boolean processSingleCharInput(String line, boolean continu) {
+        switch (line) {
+            case "q":
+                continu = false;
+                break;
+            case "r":
+                controller.reset();
+                break;
+            case "n":
+                controller.create();
+                break;
+            case "s":
+                controller.solve();
+                break;
+            case ".":
+            case "-":
+                controller.setGrid(SMALL_SIZE);
+                break;
+            case "+":
+                controller.setGrid(MEDIUM_SIZE);
+                break;
+            case "#":
+            case "*":
+                controller.setGrid(LARGE_SIZE);
+                break;
+            default:
+                LOGGER.entry("Illegal command: " + line);
+        }
         return continu;
     }
 
