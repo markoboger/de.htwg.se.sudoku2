@@ -13,14 +13,13 @@ public class TextUI implements IObserver {
     private static final int PLUSSIZE = 4;
     private static final int HASHSIZE = 9;
     private static final String NEWLINE = System.getProperty("line.separator");
-    private static final StatusMessage STATUS = new StatusMessage();
+
 
     private SudokuController controller;
 
     public TextUI(SudokuController controller) {
         this.controller = controller;
         controller.addObserver(this);
-        StatusMessage text = new StatusMessage();
     }
 
     // @Override
@@ -73,7 +72,7 @@ public class TextUI implements IObserver {
 
     public void printTUI() {
         System.out.println(NEWLINE + controller.getGridString());
-        System.out.println(NEWLINE + STATUS.text.get(controller.getStatus()) + controller.getStatusText());
+        System.out.println(NEWLINE + StatusMessage.text.get(controller.getStatus()) + controller.getStatusText());
         System.out.println(NEWLINE
                 + "Possible commands: q-quit, n-new, r-reset, .,+,#-size, xy-show (x,y), xyz-set (x,y) to z");
     }

@@ -9,9 +9,13 @@ import java.util.*;
  */
 public class StatusMessage {
 /* Fields */
-    static HashMap<GameStatus,String> text = new HashMap<GameStatus, String>();
+    static Map<GameStatus,String> text = new HashMap<GameStatus, String>();
 
 /* Constructors */
+    private StatusMessage() {
+
+    }
+
     static {
         text.put(GameStatus.WELCOME,"Welcome to HTWG Sudoku");
         text.put(GameStatus.CREATE, "A new Sudoku puzzle was created successfully");

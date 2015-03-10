@@ -12,7 +12,9 @@ public final class Sudoku {
     private static SudokuController controller;
 
 /* Constructor */
-    private Sudoku() {}
+    private Sudoku() {
+
+    }
 
 /* Methods */
     public static void main(String[] args) {

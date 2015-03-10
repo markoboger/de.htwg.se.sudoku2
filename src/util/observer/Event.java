@@ -1,3 +1,5 @@
 package util.observer;
 
-public interface Event {}
+public interface Event {
+
+}
