@@ -93,4 +93,15 @@ public class SudokuController extends Observable {
         notifyObservers();
     }
 
+    public void solve() {
+        boolean result;
+        result = grid.solve();
+        if (result) {
+            status = GameStatus.SOLVE_SUCCESS;
+        } else {
+            status = GameStatus.SOLVE_FAIL;
+            statusText = "tried in " + grid.getSteps() + " steps";
+        }
+        notifyObservers();
+    }
 }

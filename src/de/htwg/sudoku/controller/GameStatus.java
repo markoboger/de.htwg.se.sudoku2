@@ -10,5 +10,7 @@ public enum  GameStatus {
     CELL_SET_FAIL,
     CREATE,
     RESET,
-    SHOW_CANDIDATES
+    SHOW_CANDIDATES,
+    SOLVE_SUCCESS,
+    SOLVE_FAIL
 }

@@ -24,6 +24,8 @@ public class StatusMessage {
         text.put(GameStatus.RESET, "The Sudoku puzzle was reset");
         text.put(GameStatus.ILLEGAL_ARGUMENT, "This is not a valid entry");
         text.put(GameStatus.SHOW_CANDIDATES,"Possible values for this cell are: ");
+        text.put(GameStatus.SOLVE_SUCCESS, "The Sudoku was solved successfully");
+        text.put(GameStatus.SOLVE_FAIL, "Can not solve this Sudoku: ");
     }
 
 }

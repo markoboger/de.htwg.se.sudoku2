@@ -44,6 +44,9 @@ public class TextUI implements IObserver {
             case "n":
                 controller.create();
                 break;
+            case "s":
+                controller.solve();
+                break;
             case ".":
             case "-":
                 controller.setGrid(SMALL_SIZE);

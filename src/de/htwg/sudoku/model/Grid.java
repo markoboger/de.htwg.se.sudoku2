@@ -1,7 +1,6 @@
 package de.htwg.sudoku.model;
 
-import java.util.BitSet;
-import java.util.Random;
+import java.util.*;
 
 /**
  * The Grid is the playing field of a Sudoku puzzle.
@@ -17,13 +16,17 @@ public class Grid {
     private int size;
     private int blockSize;
 
-
     private Cell[][] cells;
     private House[] rows;
     private House[] columns;
     private House[] blocks;
 
-/* Constructors */
+    private int solutionCounter;
+    private int steps;
+    private List<Integer> permutation;
+
+
+    /* Constructors */
     public Grid(int size) throws IllegalArgumentException{
         if (size < 1 || MAXSIZE < size) {
             throw new IllegalArgumentException(
@@ -87,6 +90,11 @@ public class Grid {
     protected House getRow(int index) {
         return rows[index];
     }
+
+    public int getSteps() {
+        return steps;
+    }
+
 
 /* Methods */
 
@@ -251,5 +259,72 @@ public class Grid {
 
         }
         return result;
+    }
+
+    /**
+     * solves the Sudoku with a brute force backtracking strategy.
+     *
+     * @return true if the Sudoku was solved
+     */
+    public boolean solve() {
+        initSolve();
+        return solve(0, 0, 1);
+    }
+
+    private void initSolve() {
+        solutionCounter = 0;
+        steps = 0;
+        permutation = new ArrayList<Integer>();
+        for (int i = 0; i < getSize(); i++) {
+            permutation.add(i);
+        }
+        Collections.shuffle(permutation);
+    }
+
+    /**
+     * does not only look for one solution but for numSolution solutions.
+     * Meaningful arguments are 1 and 2.
+     *
+     * @param numSolutions
+     *            the number of solutions to look for.
+     * @return true if successful.
+     */
+    public boolean solve(int numSolutions) {
+        initSolve();
+        return solve(0, 0, numSolutions);
+    }
+
+    /**
+     * the recursive algorithm for solving itself. Do not call this method, use
+     * solve() to start the algorithm.
+     */
+    boolean solve(int row, int column, int numSolutions) {
+        steps = steps + 1;
+        int c = column;
+        int r = row;
+        if (c == getSize()) {
+            c = 0;
+            r++;
+            if (r == getSize()) {
+                solutionCounter++;
+                return (numSolutions == solutionCounter);
+            }
+        }
+        // skip filled cells
+        if (getCell(r, c).isSet()) {
+            return solve(r, c + 1, numSolutions);
+        }
+        for (int index = 0; index < getSize(); index++) {
+            int value = permutation.get(index) + 1;
+            if (candidates(r, c).get(value)) {
+                getCell(r, c).setValue(value);
+                if (solve(r, c + 1, numSolutions)) {
+                    return true;
+                }
+            }
+        }
+        // reset on backtrack
+        getCell(r, c).setValue(0);
+        return false;
     }
 }
