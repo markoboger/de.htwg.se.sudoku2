@@ -9,11 +9,11 @@ import java.util.regex.Pattern;
 
 public class TextUI implements IObserver {
 
-    private final static int DOTSIZE = 1;
-    private final static int PLUSSIZE = 4;
-    private final static int HASHSIZE = 9;
-    private final static String NEWLINE = System.getProperty("line.separator");
-    private final static StatusMessage STATUS = new StatusMessage();
+    private static final int DOTSIZE = 1;
+    private static final int PLUSSIZE = 4;
+    private static final int HASHSIZE = 9;
+    private static final String NEWLINE = System.getProperty("line.separator");
+    private static final StatusMessage STATUS = new StatusMessage();
 
     private SudokuController controller;
 
@@ -38,11 +38,11 @@ public class TextUI implements IObserver {
         } else if ( line.startsWith("n")) {
             controller.create();
         } else if ( line.startsWith(".")) {
-            controller.setGrid(1);
+            controller.setGrid(DOTSIZE);
         } else if ( line.startsWith("+")) {
-            controller.setGrid(4);
+            controller.setGrid(PLUSSIZE);
         } else if ( line.startsWith("#")) {
-            controller.setGrid(9);
+            controller.setGrid(HASHSIZE);
         } else
             // if the command line has the form 123, set the cell (1,2) to value 3
             if (line.matches("[0-9][0-9][0-9]")) {

@@ -12,7 +12,7 @@ import java.util.Random;
 public class Grid {
 
 /* Fields */
-    private final static int MAXSIZE = 9;
+    private static final int MAXSIZE = 9;
 
     private int size;
     private int blockSize;

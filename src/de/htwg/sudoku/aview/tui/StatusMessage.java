@@ -12,7 +12,7 @@ public class StatusMessage {
     static HashMap<GameStatus,String> text = new HashMap<GameStatus, String>();
 
 /* Constructors */
-    public StatusMessage() {
+    static {
         text.put(GameStatus.WELCOME,"Welcome to HTWG Sudoku");
         text.put(GameStatus.CREATE, "A new Sudoku puzzle was created successfully");
         text.put(GameStatus.CELL_SET_SUCCESS,"The cell was set successfully ");
