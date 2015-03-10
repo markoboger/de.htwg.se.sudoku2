@@ -7,6 +7,10 @@ import util.observer.IObserver;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
 public class TextUI implements IObserver {
 
     private static final int DOTSIZE = 1;
@@ -14,6 +18,7 @@ public class TextUI implements IObserver {
     private static final int HASHSIZE = 9;
     private static final String NEWLINE = System.getProperty("line.separator");
 
+    private static final Logger logger = LogManager.getLogger(TextUI.class.getName());
 
     private SudokuController controller;
 
@@ -54,7 +59,7 @@ public class TextUI implements IObserver {
                     controller.showCandidates(arg[0], arg[1]);
                 } else
                     {
-                        System.out.println("Illegal command");
+                        logger.entry("Illegal command");
                     }
         return continu;
     }
@@ -71,9 +76,9 @@ public class TextUI implements IObserver {
     }
 
     public void printTUI() {
-        System.out.println(NEWLINE + controller.getGridString());
-        System.out.println(NEWLINE + StatusMessage.text.get(controller.getStatus()) + controller.getStatusText());
-        System.out.println(NEWLINE
+        logger.entry(NEWLINE + controller.getGridString());
+        logger.entry(NEWLINE + StatusMessage.text.get(controller.getStatus()) + controller.getStatusText());
+        logger.entry(NEWLINE
                 + "Possible commands: q-quit, n-new, r-reset, .,+,#-size, xy-show (x,y), xyz-set (x,y) to z");
     }
 }
