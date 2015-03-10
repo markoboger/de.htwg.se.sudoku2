@@ -13,9 +13,9 @@ import org.apache.logging.log4j.Logger;
 
 public class TextUI implements IObserver {
 
-    private static final int DOTSIZE = 1;
-    private static final int PLUSSIZE = 4;
-    private static final int HASHSIZE = 9;
+    private static final int SMALL_SIZE = 1;
+    private static final int MEDIUM_SIZE = 4;
+    private static final int LARGE_SIZE = 9;
     private static final String NEWLINE = System.getProperty("line.separator");
 
     private static final Logger LOGGER = LogManager.getLogger(TextUI.class.getName());
@@ -34,33 +34,41 @@ public class TextUI implements IObserver {
 
     public boolean processInputLine(String line) {
         boolean continu = true;
-        if (line.startsWith("q")) {
-            continu = false;
-        } else if ( line.startsWith("r")) {
+        switch (line) {
+            case "q":
+                continu = false;
+                break;
+            case "r":
                 controller.reset();
-
-        } else if ( line.startsWith("n")) {
-            controller.create();
-        } else if ( line.startsWith(".")) {
-            controller.setGrid(DOTSIZE);
-        } else if ( line.startsWith("+")) {
-            controller.setGrid(PLUSSIZE);
-        } else if ( line.startsWith("#")) {
-            controller.setGrid(HASHSIZE);
+                break;
+            case "n":
+                controller.create();
+                break;
+            case ".":
+            case "-":
+                controller.setGrid(SMALL_SIZE);
+                break;
+            case "+":
+                controller.setGrid(MEDIUM_SIZE);
+                break;
+            case "#":
+            case "*":
+                controller.setGrid(LARGE_SIZE);
+                break;
+        }
+        // if the command line has the form 123, set the cell (1,2) to value 3
+        if (line.matches("[0-9][0-9][0-9]")) {
+            int[] arg = readToArray(line);
+            controller.setValue(arg[0], arg[1], arg[2]);
         } else
-            // if the command line has the form 123, set the cell (1,2) to value 3
-            if (line.matches("[0-9][0-9][0-9]")) {
+            // if the command line has the form 12, get the candidates of cell (1,2)
+            if (line.matches("[0-9][0-9]")) {
                 int[] arg = readToArray(line);
-                controller.setValue(arg[0], arg[1], arg[2]);
+                controller.showCandidates(arg[0], arg[1]);
             } else
-                // if the command line has the form 12, get the candidates of cell (1,2)
-                if (line.matches("[0-9][0-9]")) {
-                    int[] arg = readToArray(line);
-                    controller.showCandidates(arg[0], arg[1]);
-                } else
-                    {
-                        LOGGER.entry("Illegal command");
-                    }
+                {
+                    LOGGER.entry("Illegal command: " + line);
+                }
         return continu;
     }
 
