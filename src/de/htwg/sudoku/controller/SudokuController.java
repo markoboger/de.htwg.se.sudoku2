@@ -2,6 +2,8 @@ package de.htwg.sudoku.controller;
 
 import de.htwg.sudoku.model.Cell;
 import de.htwg.sudoku.model.Grid;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import util.observer.Observable;
 
 import java.util.BitSet;
@@ -11,6 +13,8 @@ import java.util.BitSet;
  */
 public class SudokuController extends Observable {
 /* Fields */
+    private static final Logger LOGGER = LogManager.getLogger(SudokuController.class.getName());
+
     private GameStatus status = GameStatus.WELCOME;
     private String statusText = "";
     private Grid grid;
@@ -25,6 +29,7 @@ public class SudokuController extends Observable {
         try {
             this.grid = new Grid(size);
         } catch (IllegalArgumentException e){
+            LOGGER.info("Setting Grid to wrong size",e);
             status = GameStatus.ILLEGAL_ARGUMENT;
             statusText= e.getMessage();
         }

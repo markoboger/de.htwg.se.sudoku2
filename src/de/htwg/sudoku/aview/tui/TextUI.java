@@ -18,7 +18,7 @@ public class TextUI implements IObserver {
     private static final int HASHSIZE = 9;
     private static final String NEWLINE = System.getProperty("line.separator");
 
-    private static final Logger logger = LogManager.getLogger(TextUI.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(TextUI.class.getName());
 
     private SudokuController controller;
 
@@ -59,7 +59,7 @@ public class TextUI implements IObserver {
                     controller.showCandidates(arg[0], arg[1]);
                 } else
                     {
-                        logger.entry("Illegal command");
+                        LOGGER.entry("Illegal command");
                     }
         return continu;
     }
@@ -76,9 +76,9 @@ public class TextUI implements IObserver {
     }
 
     public void printTUI() {
-        logger.entry(NEWLINE + controller.getGridString());
-        logger.entry(NEWLINE + StatusMessage.text.get(controller.getStatus()) + controller.getStatusText());
-        logger.entry(NEWLINE
+        LOGGER.entry(NEWLINE + controller.getGridString());
+        LOGGER.entry(NEWLINE + StatusMessage.text.get(controller.getStatus()) + controller.getStatusText());
+        LOGGER.entry(NEWLINE
                 + "Possible commands: q-quit, n-new, r-reset, .,+,#-size, xy-show (x,y), xyz-set (x,y) to z");
     }
 }
