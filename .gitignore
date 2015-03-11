@@ -6,9 +6,8 @@
 bin/
 
 # Intellij
-.idea/
-*.iml
-*.iws
+*/.idea/workspace.xml 
+*/.idea/tasks.xml
 
 # Mac
 .DS_Store
