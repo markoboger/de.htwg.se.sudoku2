@@ -2,9 +2,10 @@ package de.htwg.sudoku.controller;
 
 import de.htwg.sudoku.model.Cell;
 import de.htwg.sudoku.model.Grid;
+import de.htwg.util.command.UndoManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import util.observer.Observable;
+import de.htwg.util.observer.Observable;
 
 import java.util.BitSet;
 
@@ -43,13 +44,18 @@ public class SudokuController extends Observable {
     public void setValue(int row, int column, int value) {
         Cell cell = grid.getCell(row, column);
         if (cell.isUnSet()) {
-            cell.setValue(value);
+            UndoManager.doCommand(new SetValueCommand(cell,value));
             status = GameStatus.CELL_SET_SUCCESS;
             statusText = cell.mkString();
         } else {
             status = GameStatus.CELL_SET_FAIL;
             statusText = cell.mkString();
         }
+        notifyObservers();
+    }
+
+    public void undo() {
+        UndoManager.undoCommand();
         notifyObservers();
     }
 

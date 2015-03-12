@@ -1,4 +1,4 @@
-package util.observer;
+package de.htwg.util.observer;
 
 public interface IObservable {
 

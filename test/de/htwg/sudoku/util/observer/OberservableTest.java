@@ -2,9 +2,9 @@ package de.htwg.sudoku.util.observer;
 
 import org.junit.Before;
 import org.junit.Test;
-import util.observer.Event;
-import util.observer.IObserver;
-import util.observer.Observable;
+import de.htwg.util.observer.Event;
+import de.htwg.util.observer.IObserver;
+import de.htwg.util.observer.Observable;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

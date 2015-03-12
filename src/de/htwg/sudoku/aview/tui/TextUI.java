@@ -1,8 +1,8 @@
 package de.htwg.sudoku.aview.tui;
 
 import de.htwg.sudoku.controller.SudokuController;
-import util.observer.Event;
-import util.observer.IObserver;
+import de.htwg.util.observer.Event;
+import de.htwg.util.observer.IObserver;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -72,6 +72,9 @@ public class TextUI implements IObserver {
             case "s":
                 controller.solve();
                 break;
+            case "u":
+                controller.undo();
+                break;
             case ".":
             case "-":
                 controller.setGrid(SMALL_SIZE);
@@ -104,6 +107,6 @@ public class TextUI implements IObserver {
         LOGGER.entry(NEWLINE + controller.getGridString());
         LOGGER.entry(NEWLINE + StatusMessage.text.get(controller.getStatus()) + controller.getStatusText());
         LOGGER.entry(NEWLINE
-                + "Possible commands: q-quit, n-new, r-reset, s-solve, .,+,#-size, xy-show (x,y), xyz-set (x,y) to z");
+                + "Possible commands: q-quit, n-new, r-reset, s-solve, u-undo .,+,#-size, xy-show (x,y), xyz-set (x,y) to z");
     }
 }
