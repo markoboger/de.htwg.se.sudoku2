@@ -5,13 +5,13 @@ import de.htwg.util.command.UndoableCommand;
 import de.htwg.util.memento.Memento;
 import de.htwg.util.memento.Originator;
 
+public class CreateCommand extends Originator implements UndoableCommand {
 
-public class ResetCommand extends Originator implements UndoableCommand {
 /* Fields */
-    private Grid grid;
+    Grid grid;
 
 /* Constructors */
-    public ResetCommand(Grid grid) {
+    public CreateCommand(Grid grid) {
         this.grid = grid;
     }
 
@@ -19,7 +19,7 @@ public class ResetCommand extends Originator implements UndoableCommand {
 /* Methods */
     public void doCommand() {
         setMemento(grid.toString("."));
-        grid.reset();
+        grid.create();
     }
 
     public void undoCommand() {

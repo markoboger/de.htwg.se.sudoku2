@@ -29,6 +29,7 @@ public class SudokuController extends Observable {
     public void setGrid(int size) {
         try {
             this.grid = new Grid(size);
+            UndoManager.reset();
         } catch (IllegalArgumentException e){
             LOGGER.info("Setting Grid to wrong size",e);
             status = GameStatus.ILLEGAL_ARGUMENT;
@@ -54,11 +55,6 @@ public class SudokuController extends Observable {
         notifyObservers();
     }
 
-    public void undo() {
-        UndoManager.undoCommand();
-        notifyObservers();
-    }
-
     public GameStatus getStatus() {
         return status;
     }
@@ -76,6 +72,11 @@ public class SudokuController extends Observable {
     }
 
 /* Methods */
+    public void undo() {
+        UndoManager.undoCommand();
+        notifyObservers();
+    }
+
     public void reset() {
         UndoManager.doCommand(new ResetCommand(grid));
         status = GameStatus.RESET;
@@ -84,6 +85,7 @@ public class SudokuController extends Observable {
     }
 
     public void create() {
+        UndoManager.doCommand(new CreateCommand(grid));
         grid.create();
         status = GameStatus.CREATE;
         statusText="";
@@ -101,7 +103,10 @@ public class SudokuController extends Observable {
 
     public void solve() {
         boolean result;
-        result = grid.solve();
+        SolveCommand command = new SolveCommand(grid);
+        UndoManager.doCommand(command);
+
+        result = command.getResult();
         if (result) {
             status = GameStatus.SOLVE_SUCCESS;
         } else {

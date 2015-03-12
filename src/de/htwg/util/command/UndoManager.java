@@ -25,4 +25,8 @@ public class UndoManager {
             topCommand.undoCommand();
         }
     }
+
+    public static void reset() {
+        undoStack.clear();
+    }
 }
