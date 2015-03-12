@@ -6,8 +6,7 @@
 bin/
 
 # Intellij
-*/.idea/workspace.xml 
-*/.idea/tasks.xml
+/.idea/
 
 # Mac
 .DS_Store
@@ -15,6 +14,12 @@ bin/
 # Maven
 log/
 target/
+
+# Gradle
+/.gradle/
+
+# Sonar
+/.sonar/
 
 # Application
 /sudoku.log

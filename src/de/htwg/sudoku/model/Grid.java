@@ -24,6 +24,7 @@ public class Grid {
     private int solutionCounter;
     private int steps;
     private List<Integer> permutation;
+    private GridCreateStrategyTemplate createStrategy = GridCreateStrategyFactory.getInstance();
 
 
     /* Constructors */
@@ -166,15 +167,7 @@ public class Grid {
     }
 
     public void create() {
-        reset();
-        fillSymmetrically();
-        for (int row = 0; row < getSize(); row++) {
-            for (int column = 0; column < getSize(); column++) {
-                if (getCell(row, column).isSet()) {
-                    getCell(row, column).setGiven(true);
-                }
-            }
-        }
+        createStrategy.createNewGrid(this);
     }
 
     public void fillSymmetrically() {
