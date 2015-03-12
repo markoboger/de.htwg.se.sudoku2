@@ -77,7 +77,7 @@ public class SudokuController extends Observable {
 
 /* Methods */
     public void reset() {
-        grid.reset();
+        UndoManager.doCommand(new ResetCommand(grid));
         status = GameStatus.RESET;
         statusText="";
         notifyObservers();

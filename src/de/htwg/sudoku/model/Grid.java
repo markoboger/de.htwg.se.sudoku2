@@ -255,6 +255,47 @@ public class Grid {
     }
 
     /**
+     * takes a String and parses numbers out of it and fills the grid with these
+     * numbers. The String should contain size*size numbers. All other
+     * characters are ignored.
+     *
+     * @param input
+     *            must contain size*size digits.
+     * @return true if the parsing was successful, i.e. it found size*size
+     *         digits.
+     */
+    public boolean parseStringToGrid(String input) {
+        return parseStringToGrid(input, ".");
+    }
+
+    public boolean parseStringToGrid(String input, String zero) {
+        int row = 0;
+        int column = 0;
+        String letter;
+        for (int i = 0; i < input.length(); i++) {
+            letter = input.substring(i, i + 1);
+            if (letter.matches("[0-9]") || letter.equals(zero)) {
+                Cell cell = getCell(row, column);
+                if (letter.matches("[1-9]")) {
+                    cell.setValue(Integer.parseInt(letter));
+                    cell.setGiven(true);
+                } else {
+                    cell.setGiven(false);
+                }
+                if (letter.equals(zero)) {
+                    cell.setValue(0);
+                }
+                column++;
+                if (column == getSize()) {
+                    column = 0;
+                    row++;
+                }
+            }
+        }
+        return (row == getSize());
+    }
+
+    /**
      * solves the Sudoku with a brute force backtracking strategy.
      *
      * @return true if the Sudoku was solved
