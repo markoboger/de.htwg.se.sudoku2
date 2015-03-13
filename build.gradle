@@ -4,7 +4,7 @@ repositories {
 
 apply plugin: "java"
 apply plugin: "idea"
-apply plugin: "sonar-runner"
+apply plugin: "sonarqube-runner"
 
 idea {
     project {
@@ -31,6 +31,7 @@ jar {
 }
 
 sonarRunner {
+    toolVersion = '2.4'
     sonarProperties {
 //        property "sonar.host.url", "http://lenny2.in.htwg-konstanz.de:9000/"
 //        property "sonar.jdbc.url", "jdbc:h2:tcp://lenny2.in.htwg-konstanz.de:9092/sonar"
