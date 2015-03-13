@@ -1,7 +1,9 @@
 package de.htwg.util.command;
 
-import java.util.List;
-import java.util.Stack;
+import java.util.Collection;
+import java.util.Deque;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 /**
  * The UndoManager holds a Stack of Commands.
@@ -10,7 +12,8 @@ import java.util.Stack;
  */
 public class UndoManager {
 /* Fields */
-    private static Stack<UndoableCommand> undoStack = new Stack<UndoableCommand>();
+    private static Deque<UndoableCommand> undoStack = new LinkedList<UndoableCommand>();
+
     private static UndoableCommand topCommand;
 
 /* Methods */
@@ -20,7 +23,7 @@ public class UndoManager {
     }
 
     public static void undoCommand() {
-        if (!undoStack.empty()) {
+        if (!undoStack.isEmpty()) {
             topCommand = undoStack.pop();
             topCommand.undoCommand();
         }

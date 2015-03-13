@@ -292,7 +292,7 @@ public class Grid {
                 }
             }
         }
-        return (row == getSize());
+        return row == getSize();
     }
 
     /**
