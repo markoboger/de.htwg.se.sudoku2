@@ -4,7 +4,7 @@ repositories {
 
 apply plugin: "java"
 apply plugin: "idea"
-apply plugin: "sonarqube-runner"
+apply plugin: "sonar-runner"
 
 idea {
     project {
