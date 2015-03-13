@@ -89,15 +89,15 @@ public class SudokuControllerTest {
         assertEquals(GameStatus.SOLVE_SUCCESS,controller1.getStatus());
     }
 
-    @Test
-	public void testSolveFails() {
-		controller4.create();
-		controller4.setValue(0, 0, 1);
-		controller4.setValue(1, 0, 1);
-		controller4.setValue(1, 1, 1);
-		controller4.solve();
-
-		assertEquals(GameStatus.SOLVE_FAIL,controller4.getStatus());
-	}
+//    @Test
+//	public void testSolveFails() {
+//		controller4.create();
+//		controller4.setValue(0, 0, 1);
+//		controller4.setValue(1, 0, 1);
+//		controller4.setValue(1, 1, 1);
+//		controller4.solve();
+//
+//		assertEquals(GameStatus.SOLVE_FAIL,controller4.getStatus());
+//	}
 
 }

@@ -19,11 +19,13 @@ public class SolveCommand extends Originator implements UndoableCommand {
     public boolean getResult() {
         return result;
     }
+
 /* Methods */
     public void doCommand() {
-    setMemento(grid.toString("."));
-    result = grid.solve();
-}
+        result = false;
+        setMemento(grid.toString("."));
+        result = grid.solve();
+    }
 
     public void undoCommand() {
         grid.parseStringToGrid(getMemento());
