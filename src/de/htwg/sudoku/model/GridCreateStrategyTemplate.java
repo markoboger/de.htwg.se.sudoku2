@@ -19,7 +19,7 @@ public abstract class GridCreateStrategyTemplate {
 
     public void prepareGrid() {
         // by default do nothing
-    };
+    }
 
     public abstract void fillSymmetrically();
 

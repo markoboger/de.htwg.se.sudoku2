@@ -5,8 +5,15 @@ package de.htwg.sudoku.model;
  * create grids
  */
 public abstract class GridCreateStrategyFactory {
+/* Fields */
     private static GridCreateStrategyTemplate strategy = new RemovePairsGridCreateStrategy();
 
+/* Constructors */
+    private GridCreateStrategyFactory(){
+
+    }
+
+/* Getter and Setter */
     public static void setStrategy(GridCreateStrategyTemplate strat) {
         strategy = strat;
     }
