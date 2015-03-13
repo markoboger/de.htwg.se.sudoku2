@@ -2,8 +2,7 @@ package de.htwg.sudoku.controller;
 
 import de.htwg.sudoku.model.Grid;
 import de.htwg.util.command.UndoableCommand;
-import de.htwg.util.memento.Memento;
-import de.htwg.util.memento.Originator;
+import de.htwg.util.Memento.Originator;
 
 public class CreateCommand extends Originator implements UndoableCommand {
 
