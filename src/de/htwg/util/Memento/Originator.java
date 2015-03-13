@@ -1,7 +1,7 @@
-package de.htwg.util.Memento;
+package de.htwg.util.memento;
 
 /**
- * An Originator holds a reference to a Memento, can get and set the Memento
+ * An Originator holds a reference to a memento, can get and set the memento
  */
 public class Originator {
 /* Fields */

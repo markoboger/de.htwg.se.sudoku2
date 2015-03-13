@@ -13,7 +13,7 @@ public abstract class GridCreateStrategyFactory {
 
     public static GridCreateStrategyTemplate getInstance() {
         return strategy;
-    };
+    }
 
     public static GridCreateStrategyTemplate getStrategy() {
         return strategy;

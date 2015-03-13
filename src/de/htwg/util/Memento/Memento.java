@@ -1,7 +1,7 @@
-package de.htwg.util.Memento;
+package de.htwg.util.memento;
 
 /**
- * A Memento stores the state of some Object in a String,
+ * A memento stores the state of some Object in a String,
  * so that its state can be restored from it in an undo operation
  */
 public class Memento {

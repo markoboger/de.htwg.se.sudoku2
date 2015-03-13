@@ -11,7 +11,7 @@ public class RemovePairsGridCreateStrategy extends GridCreateStrategyTemplate {
 
     public void prepareGrid() {
         grid.solve();
-    };
+    }
 
     @Override
     public void fillSymmetrically() {

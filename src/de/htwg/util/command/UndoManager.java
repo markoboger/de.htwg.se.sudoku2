@@ -1,8 +1,6 @@
 package de.htwg.util.command;
 
-import java.util.Collection;
 import java.util.Deque;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -15,6 +13,11 @@ public class UndoManager {
     private static Deque<UndoableCommand> undoStack = new LinkedList<UndoableCommand>();
 
     private static UndoableCommand topCommand;
+
+/* Constructors */
+    private UndoManager() {
+
+    }
 
 /* Methods */
     public static void doCommand(UndoableCommand newCommand) {
