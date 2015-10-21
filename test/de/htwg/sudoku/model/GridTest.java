@@ -285,8 +285,8 @@ public class GridTest {
     /* Methods */
     private boolean assertReachAllCells(Grid grid) {
         int cellsPerEdge=grid.getSize();
-        for (int row = 0; row < grid.getSize(); row++) {
-            for (int column = 0; column < grid.getSize(); column++) {
+        for (int row = 0; row < cellsPerEdge; row++) {
+            for (int column = 0; column < cellsPerEdge; column++) {
                 assertCellIsAt(row,column,grid);
             }
         }
