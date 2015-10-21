@@ -10,7 +10,6 @@ public class Grid {
 
 /* Fields */
     private static final int MAXSIZE = 9;
-    private final static double EPSILON = 0.00001;
 
     private int size;
     private int blockSize;

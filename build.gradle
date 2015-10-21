@@ -1,0 +1,44 @@
+repositories {
+    mavenCentral()
+}
+
+apply plugin: "java"
+apply plugin: "idea"
+apply plugin: "sonar-runner"
+apply plugin: "eclipse"
+
+idea {
+    project {
+        //if you want to set specific jdk and language level
+        jdkName = '1.7'
+        languageLevel = '1.7'
+    }
+}
+
+dependencies {
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.2'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.2'
+
+    testCompile "junit:junit:4.11"
+}
+
+sourceSets {
+    main.java.srcDir "src"
+    test.java.srcDir "test"
+}
+
+jar {
+    manifest.attributes "Main-Class":"de.htwg.sudoku.Sudoku"
+}
+
+sonarRunner {
+    sonarProperties {
+//        property "sonar.host.url", "http://lenny2.in.htwg-konstanz.de:9000/"
+//        property "sonar.jdbc.url", "jdbc:h2:tcp://lenny2.in.htwg-konstanz.de:9092/sonar"
+        property "sonar.host.url", "http://localhost:9000/"
+        property "sonar.jdbc.url", "jdbc:h2:tcp://localhost:9092/sonar"
+        property "sonar.jdbc.driverClassName", "org.h2.Driver"
+        property "sonar.jdbc.username", "SE2015SS"
+        property "sonar.jdbc.password", "htwg"
+    }
+}
