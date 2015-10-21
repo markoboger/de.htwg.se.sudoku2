@@ -1,13 +1,15 @@
 
 # Eclipse
 .classpath
-.project
 .settings/
 bin/
 
 # Intellij
 */.idea/workspace.xml 
 */.idea/tasks.xml
+
+# Gradle
+.gradle/
 
 # Mac
 .DS_Store
