@@ -3,20 +3,14 @@ package de.htwg.sudoku.model;
 import java.util.BitSet;
 
 public interface IGrid {
-
+	
+/* Getter and Setter */
     /**
      * @param row
      * @param column
      * @return the cell at coordinates (row, col)
      */
     ICell getCell(int row, int column);
-
-    /**
-     * Calculate a solution for the Sudoku puzzle.
-     * 
-     * @return true if a solution was found, false if no solution was found.
-     */
-    boolean solve();
 
     /**
      * @return the number of cells per edge. The typical value is 9 for a 9*9
@@ -31,18 +25,18 @@ public interface IGrid {
     int getBlockSize();
 
     /**
-     * Calculates the id of the block at coordinates (row, col).
-     * 
-     * @param row
-     * @param column
-     * @return an index value between 0 and the number of blocks.
-     */
-    int blockAt(int row, int column);
-
-    /**
      * @return the number of steps that were used in the last solve run.
      */
     int getSteps();
+
+/* Methods */
+    
+    /**
+     * Calculate a solution for the Sudoku puzzle.
+     * 
+     * @return true if a solution was found, false if no solution was found.
+     */
+    boolean solve();
 
     /**
      * Set the values of all cells back to initial values.
@@ -53,6 +47,15 @@ public interface IGrid {
      * Create a new Sudoku puzzle.
      */
     void create();
+    
+    /**
+     * Calculates the id of the block at coordinates (row, col).
+     * 
+     * @param row
+     * @param column
+     * @return an index value between 0 and the number of blocks.
+     */
+    int blockAt(int row, int column);
 
     /**
      * @param string
