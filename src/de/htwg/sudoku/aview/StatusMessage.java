@@ -1,4 +1,4 @@
-package de.htwg.sudoku.aview.tui;
+package de.htwg.sudoku.aview;
 
 import de.htwg.sudoku.controller.GameStatus;
 
@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class StatusMessage {
 /* Fields */
-    static Map<GameStatus,String> text = new HashMap<GameStatus, String>();
+    public static Map<GameStatus,String> text = new HashMap<GameStatus, String>();
 
 /* Constructors */
     private StatusMessage() {

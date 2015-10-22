@@ -10,6 +10,10 @@ public enum  GameStatus {
     CELL_SET_FAIL,
     CREATE,
     RESET,
+    REDO, 
+    UNDO,
+    COPY,
+    PAST,
     SHOW_CANDIDATES,
     SOLVE_SUCCESS,
     SOLVE_FAIL

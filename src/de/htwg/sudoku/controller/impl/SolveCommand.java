@@ -30,4 +30,10 @@ public class SolveCommand extends Originator implements UndoableCommand {
     public void undoCommand() {
         grid.parseStringToGrid(getMemento());
     }
+    
+    public void redoCommand() {
+        result = false;
+        setMemento(grid.toString("."));
+        result = grid.solve();
+    }
 }

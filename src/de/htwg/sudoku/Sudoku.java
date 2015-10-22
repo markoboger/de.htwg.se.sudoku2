@@ -1,5 +1,6 @@
 package de.htwg.sudoku;
 
+import de.htwg.sudoku.aview.gui.SudokuFrame;
 import de.htwg.sudoku.aview.tui.TextUI;
 import de.htwg.sudoku.controller.ISudokuController;
 import de.htwg.sudoku.controller.impl.SudokuController;
@@ -23,6 +24,7 @@ public final class Sudoku {
 		// Build up the application
 		controller = new SudokuController(9);
 
+        SudokuFrame gui = new SudokuFrame(controller);
 		tui = new TextUI(controller);
 
 		// Create an initial game

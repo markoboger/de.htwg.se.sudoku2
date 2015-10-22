@@ -1,5 +1,6 @@
 package de.htwg.sudoku.aview.tui;
 
+import de.htwg.sudoku.aview.StatusMessage;
 import de.htwg.sudoku.controller.ISudokuController;
 import de.htwg.util.observer.Event;
 import de.htwg.util.observer.IObserver;
@@ -73,7 +74,11 @@ public class TextUI implements IObserver {
                 controller.solve();
                 break;
             case "u":
+            case "z":
                 controller.undo();
+                break;
+            case "y":
+                controller.redo();
                 break;
             case ".":
             case "-":

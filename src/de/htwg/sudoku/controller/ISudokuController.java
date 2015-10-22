@@ -8,7 +8,7 @@ public interface ISudokuController extends IObservable {
      * Create a string representation of the Sudoku puzzle and put it into the
      * system clip board
      */
-//    void copy();
+    void copy();
 
     /**
      * Calculate a new Sudoku puzzle.
@@ -18,18 +18,25 @@ public interface ISudokuController extends IObservable {
     /**
      * Terminate the application.
      */
-//    void exit();
+    void exit();
 
     /**
      * @return the number of cells in a row of a block. A typcial value is 3.
      */
-//    int getBlockSize();
+    int getBlockSize();
 
     /**
      * @return the number of cells per row of a Sudoku puzzle. Tyical value is
      *         9.
      */
     int getSize();
+    
+    /**
+     * Change the size of the Grid, this creates a new instance for the grid.
+     * 
+     * @param size
+     */
+    void resetSize(int size);
 
     /**
      * @return the textual representation of the Sudoku puzzle.
@@ -61,7 +68,7 @@ public interface ISudokuController extends IObservable {
      * 
      * @param index
      */
-//    void highlight(int index);
+    void highlight(int index);
 
     /**
      * 
@@ -71,7 +78,7 @@ public interface ISudokuController extends IObservable {
      * @return true if the value of candidate can still be set in accordance to
      *         the rules of Sudoko at the coordinates (row, col).
      */
-//    boolean isCandidate(int row, int column, int candidate);
+    boolean isCandidate(int row, int column, int candidate);
 
     /**
      * @param row
@@ -79,7 +86,7 @@ public interface ISudokuController extends IObservable {
      * @return true if the cell at (row, col) was part of the initial puzzle,
      *         false if the cell is unset or was set by the user.
      */
-//    boolean isGiven(int row, int column);
+    boolean isGiven(int row, int column);
 
     /**
      * @param row
@@ -87,33 +94,33 @@ public interface ISudokuController extends IObservable {
      * @return true if the cell at (row, col) should be highlighted in a gui,
      *         false if not.
      */
-//    boolean isHighlighted(int row, int column);
+    boolean isHighlighted(int row, int column);
 
     /**
      * @param row
      * @param column
      * @return true if value of the cell at (row, col) is different from zero.
      */
-//    boolean isSet(int row, int column);
+    boolean isSet(int row, int column);
 
     /**
      * @param row
      * @param column
      * @return true if the value show candidates is set to true.
      */
-//    boolean isShowCandidates(int row, int column);
+    boolean isShowCandidates(int row, int column);
 
     /**
      * Take the content of the system clip board and try to parse a Sudoku
      * puzzle out of it.
      */
-//    void paste();
+    void paste();
 
     /**
      * After the call to an undo, redo can re-do the undone change to the Sudoku
      * puzzle
      */
-//    void redo();
+    void redo();
 
     /**
      * Sets the Sudoku game back to initial empty values.
@@ -149,7 +156,7 @@ public interface ISudokuController extends IObservable {
      * 
      */
     
-//    void showAllCandidates();
+    void showAllCandidates();
 
     /**
      * Calculates a solution for a Sudoku puzzle.
@@ -166,14 +173,14 @@ public interface ISudokuController extends IObservable {
      * @param column
      * @return the id of the block at coordinates (row, column)
      */
-//    int blockAt(int row, int column);
+    int blockAt(int row, int column);
 
     /**
      * Try to fill a grid with numbers read from a string.
      * 
      * @param gridString
      */
-//    void parseStringToGrid(String gridString);
+    void parseStringToGrid(String gridString);
 
     /**
      * Create a new puzzle with a size newSize

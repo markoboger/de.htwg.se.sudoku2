@@ -20,5 +20,9 @@ public class SetValueCommand implements UndoableCommand {
     public void undoCommand() {
         cell.setValue(0);
     }
+    
+    public void redoCommand() {
+        cell.setValue(value);
+    }
 
 }

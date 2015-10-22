@@ -2,6 +2,7 @@ package de.htwg.sudoku.controller.impl;
 
 import de.htwg.sudoku.controller.GameStatus;
 import de.htwg.sudoku.controller.ISudokuController;
+import de.htwg.sudoku.controller.SizeChangedEvent;
 import de.htwg.sudoku.model.ICell;
 import de.htwg.sudoku.model.IGrid;
 import de.htwg.sudoku.model.impl.GridFactory;
@@ -12,6 +13,12 @@ import org.apache.logging.log4j.Logger;
 
 import de.htwg.util.observer.Observable;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 import java.util.BitSet;
 
 /**
@@ -24,6 +31,8 @@ public class SudokuController extends Observable implements ISudokuController {
     private GameStatus status = GameStatus.WELCOME;
     private String statusText = "";
     private IGrid grid;
+
+	private int highlighted;
 
 /* Constructors */
     public SudokuController(int size) {
@@ -63,6 +72,10 @@ public class SudokuController extends Observable implements ISudokuController {
     public GameStatus getStatus() {
         return status;
     }
+    
+    public int getBlockSize() {
+        return grid.getBlockSize();
+    }
 
     public String getStatusText() {
         return statusText;
@@ -75,12 +88,48 @@ public class SudokuController extends Observable implements ISudokuController {
     public int getValue(int row, int column) {
         return grid.getCell(row, column).getValue();
     }
+    
+    public boolean isHighlighted(int row, int column) {
+        return grid.candidates(row, column).get(highlighted);
+    }
+    
+    public boolean isGiven(int row, int column) {
+        return grid.getCell(row, column).isGiven();
+    }
+    
+    public boolean isShowCandidates(int row, int column) {
+        return grid.getCell(row, column).isShowCandidates();
+    }
+    
+    public boolean isCandidate(int row, int column, int candidate) {
+        return grid.candidates(row, column).get(candidate);
+    }
+    
+    public boolean isSet(int row, int column) {
+        return grid.getCell(row, column).isSet();
+    }
+    
+    public int blockAt(int row, int column) {
+        return grid.blockAt(row, column);
+    }
 
 /* Methods */
+    
+    public void exit() {
+        System.exit(0);
+    }
+    
     public void undo() {
         UndoManager.undoCommand();
         notifyObservers();
     }
+    
+    public void redo() {
+        UndoManager.redoCommand();
+        status = GameStatus.REDO;
+        notifyObservers();
+    }
+
 
     public void reset() {
         UndoManager.doCommand(new ResetCommand(grid));
@@ -96,6 +145,14 @@ public class SudokuController extends Observable implements ISudokuController {
         statusText="";
         notifyObservers();
     }
+    
+    @Override
+    public void resetSize(int newSize) {
+        this.grid = GridFactory.getInstance().create(newSize);
+        reset();
+        SizeChangedEvent event = new SizeChangedEvent();
+        notifyObservers(event);
+    }
 
     public void showCandidates(int row, int column) {
         ICell cell = grid.getCell(row, column);
@@ -103,6 +160,20 @@ public class SudokuController extends Observable implements ISudokuController {
         BitSet set = grid.candidates(row, column);
         status = GameStatus.SHOW_CANDIDATES;
         statusText = cell.mkString() +" : "+ set.toString();
+        notifyObservers();
+    }
+    
+    public void showAllCandidates() {
+        for (int row = 0; row < grid.getSize(); row++) {
+            for (int col = 0; col < grid.getSize(); col++) {
+                showCandidates(row, col);
+            }
+        }
+        notifyObservers();
+    }
+    
+    public void highlight(int value) {
+        highlighted = value;
         notifyObservers();
     }
 
@@ -119,5 +190,42 @@ public class SudokuController extends Observable implements ISudokuController {
             statusText = "tried in " + grid.getSteps() + " steps";
         }
         notifyObservers();
+    }
+    
+    public void copy() {
+        StringSelection gridString = new StringSelection(grid.toString("0"));
+        Toolkit.getDefaultToolkit().getSystemClipboard()
+                .setContents(gridString, null);
+        status = GameStatus.COPY;
+        notifyObservers();
+    }
+
+    public void paste() {
+        Transferable transferable = Toolkit.getDefaultToolkit()
+                .getSystemClipboard().getContents(null);
+        if (transferable != null
+                && transferable.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+            String input;
+            try {
+                input = (String) transferable
+                        .getTransferData(DataFlavor.stringFlavor);
+                grid.parseStringToGrid(input);
+            } catch (UnsupportedFlavorException e1) {
+
+                statusText = "Could not read from Clipboard";
+            } catch (IOException e1) {
+
+                statusText = "Could not read from Clipboard";
+            }
+        }
+        status = GameStatus.PAST;
+        notifyObservers();
+    }
+    
+    @Override
+    public void parseStringToGrid(String gridString) {
+        grid.parseStringToGrid(gridString);
+        notifyObservers();
+
     }
 }

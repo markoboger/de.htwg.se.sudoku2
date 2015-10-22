@@ -24,4 +24,9 @@ public class CreateCommand extends Originator implements UndoableCommand {
     public void undoCommand() {
         grid.parseStringToGrid(getMemento());
     }
+    
+    public void redoCommand() {
+        setMemento(grid.toString("."));
+        grid.create();
+    }
 }

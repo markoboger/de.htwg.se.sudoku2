@@ -11,6 +11,7 @@ import java.util.LinkedList;
 public class UndoManager {
 /* Fields */
     private static Deque<UndoableCommand> undoStack = new LinkedList<UndoableCommand>();
+    private static Deque<UndoableCommand> redoStack = new LinkedList<UndoableCommand>();
 
     private static UndoableCommand topCommand;
 
@@ -29,6 +30,14 @@ public class UndoManager {
         if (!undoStack.isEmpty()) {
             topCommand = undoStack.pop();
             topCommand.undoCommand();
+            redoStack.push(topCommand);
+        }
+    }
+    
+    public static void redoCommand() {
+    	if (!redoStack.isEmpty()) {
+            topCommand = redoStack.pop();
+            topCommand.redoCommand();
         }
     }
 
