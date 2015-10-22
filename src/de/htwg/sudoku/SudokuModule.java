@@ -13,7 +13,7 @@ public class SudokuModule extends AbstractModule {
         bind(IGridFactory.class)
                 .to(de.htwg.sudoku.model.impl.GridFactory.class);
         bind(ISudokuController.class).to(
-                de.htwg.sudoku.controller.impl.SudokuController.class);
+                de.htwg.sudoku.controller.logwrapper.SudokuController.class);
 
     }
 
