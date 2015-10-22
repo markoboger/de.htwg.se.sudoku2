@@ -1,4 +1,4 @@
-package de.htwg.sudoku.controller;
+package de.htwg.sudoku.controller.impl;
 
 import de.htwg.sudoku.model.Grid;
 import de.htwg.util.command.UndoableCommand;

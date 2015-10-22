@@ -1,16 +1,16 @@
-package de.htwg.sudoku.controller;
+package de.htwg.sudoku.controller.impl;
 
 import de.htwg.sudoku.model.Grid;
 import de.htwg.util.command.UndoableCommand;
 import de.htwg.util.memento.Originator;
 
-public class CreateCommand extends Originator implements UndoableCommand {
 
+public class ResetCommand extends Originator implements UndoableCommand {
 /* Fields */
-    Grid grid;
+    private Grid grid;
 
 /* Constructors */
-    public CreateCommand(Grid grid) {
+    public ResetCommand(Grid grid) {
         this.grid = grid;
     }
 
@@ -18,7 +18,7 @@ public class CreateCommand extends Originator implements UndoableCommand {
 /* Methods */
     public void doCommand() {
         setMemento(grid.toString("."));
-        grid.create();
+        grid.reset();
     }
 
     public void undoCommand() {

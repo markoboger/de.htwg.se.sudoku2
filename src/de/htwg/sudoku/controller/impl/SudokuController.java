@@ -1,10 +1,14 @@
-package de.htwg.sudoku.controller;
+package de.htwg.sudoku.controller.impl;
 
+import de.htwg.sudoku.controller.GameStatus;
+import de.htwg.sudoku.controller.ISudokuController;
 import de.htwg.sudoku.model.Cell;
 import de.htwg.sudoku.model.Grid;
 import de.htwg.util.command.UndoManager;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import de.htwg.util.observer.Observable;
 
 import java.util.BitSet;
@@ -12,7 +16,7 @@ import java.util.BitSet;
 /**
  * Main controller of Sudoku
  */
-public class SudokuController extends Observable {
+public class SudokuController extends Observable implements ISudokuController {
 /* Fields */
     private static final Logger LOGGER = LogManager.getLogger(SudokuController.class.getName());
 

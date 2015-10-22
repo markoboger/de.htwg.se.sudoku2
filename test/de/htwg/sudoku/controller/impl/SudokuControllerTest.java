@@ -1,8 +1,9 @@
-package de.htwg.sudoku.controller;
+package de.htwg.sudoku.controller.impl;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import de.htwg.sudoku.controller.GameStatus;
 import static org.junit.Assert.*;
 
 public class SudokuControllerTest {

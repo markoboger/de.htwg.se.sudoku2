@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import de.htwg.sudoku.controller.SudokuController;
+import de.htwg.sudoku.controller.impl.SudokuController;
 
 public class TextUITest {
 	

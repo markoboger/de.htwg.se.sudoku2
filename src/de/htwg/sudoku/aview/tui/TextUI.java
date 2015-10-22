@@ -1,6 +1,6 @@
 package de.htwg.sudoku.aview.tui;
 
-import de.htwg.sudoku.controller.SudokuController;
+import de.htwg.sudoku.controller.ISudokuController;
 import de.htwg.util.observer.Event;
 import de.htwg.util.observer.IObserver;
 
@@ -20,9 +20,9 @@ public class TextUI implements IObserver {
 
     private static final Logger LOGGER = LogManager.getLogger(TextUI.class.getName());
 
-    protected SudokuController controller;
+    protected ISudokuController controller;
 
-    public TextUI(SudokuController controller) {
+    public TextUI(ISudokuController controller) {
         this.controller = controller;
         controller.addObserver(this);
     }

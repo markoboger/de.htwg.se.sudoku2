@@ -1,14 +1,16 @@
 package de.htwg.sudoku;
 
 import de.htwg.sudoku.aview.tui.TextUI;
-import de.htwg.sudoku.controller.SudokuController;
+import de.htwg.sudoku.controller.ISudokuController;
+import de.htwg.sudoku.controller.impl.SudokuController;
+
 import java.util.Scanner;
 
 public final class Sudoku {
 	/* Fields */
 	private static Scanner scanner;
 	private static TextUI tui;
-	protected static SudokuController controller;
+	protected static ISudokuController controller;
 
 	/* Constructor */
 	private Sudoku() {
