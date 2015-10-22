@@ -3,29 +3,33 @@ package de.htwg.sudoku.controller.impl;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
+import de.htwg.sudoku.SudokuTestModule;
 import de.htwg.sudoku.controller.GameStatus;
+import de.htwg.sudoku.controller.ISudokuController;
 import static org.junit.Assert.*;
 
 public class SudokuControllerTest {
 /* Fields */
     String newLine = System.getProperty("line.separator");
-    SudokuController controller1, controller4, controller9;
+    ISudokuController controller1, controller4, controller9;
+ // Set up Google Guice Dependency Injector
+    Injector injector = Guice.createInjector(new SudokuTestModule());
 
 /* Setup */
     @Before
     public void setUp() {
-        controller1 = new SudokuController(1);
-        controller4 = new SudokuController(4);
-        controller9 = new SudokuController(9);
+        controller1 = injector.getInstance(ISudokuController.class);
+        controller1.resetSize(1);
+        controller4 = injector.getInstance(ISudokuController.class);
+        controller4.resetSize(4);
+        controller9 = injector.getInstance(ISudokuController.class);
+        controller9.resetSize(9);
     }
+    
 /* Tests */
-    @Test
-    public void testGetStatus() {
-        assertEquals(GameStatus.WELCOME, controller1.getStatus());
-        assertEquals(GameStatus.WELCOME, controller4.getStatus());
-        assertEquals(GameStatus.WELCOME, controller9.getStatus());
-    }
-
     @Test
     public void testSetGrid() {
         assertEquals(1,controller1.getSize());

@@ -5,11 +5,13 @@ import de.htwg.sudoku.controller.ISudokuController;
 import de.htwg.sudoku.controller.SizeChangedEvent;
 import de.htwg.sudoku.model.ICell;
 import de.htwg.sudoku.model.IGrid;
-import de.htwg.sudoku.model.impl.GridFactory;
+import de.htwg.sudoku.model.IGridFactory;
 import de.htwg.util.command.UndoManager;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.google.inject.Inject;
 
 import de.htwg.util.observer.Observable;
 
@@ -31,18 +33,21 @@ public class SudokuController extends Observable implements ISudokuController {
     private GameStatus status = GameStatus.WELCOME;
     private String statusText = "";
     private IGrid grid;
-
+    private IGridFactory gridFactory;
 	private int highlighted;
+    private static final int NORMALGRID = 9;
 
 /* Constructors */
-    public SudokuController(int size) {
-        setGrid(size);
+	@Inject
+    public SudokuController(IGridFactory gridFactory) {
+		 this.gridFactory = gridFactory;
+	     this.grid = gridFactory.create(NORMALGRID);
     }
 
 /* Getter and Setter */
     public void setGrid(int size) {
         try {
-            this.grid = GridFactory.getInstance().create(size);
+            this.grid = gridFactory.create(size);
             UndoManager.reset();
         } catch (IllegalArgumentException e){
             LOGGER.info("Setting Grid to wrong size",e);
@@ -148,7 +153,7 @@ public class SudokuController extends Observable implements ISudokuController {
     
     @Override
     public void resetSize(int newSize) {
-        this.grid = GridFactory.getInstance().create(newSize);
+        this.grid = gridFactory.create(newSize);
         reset();
         SizeChangedEvent event = new SizeChangedEvent();
         notifyObservers(event);

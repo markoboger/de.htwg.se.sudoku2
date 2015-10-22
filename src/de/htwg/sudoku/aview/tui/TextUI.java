@@ -11,6 +11,8 @@ import java.util.regex.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.google.inject.Inject;
+
 
 public class TextUI implements IObserver {
 
@@ -23,6 +25,7 @@ public class TextUI implements IObserver {
 
     protected ISudokuController controller;
 
+    @Inject
     public TextUI(ISudokuController controller) {
         this.controller = controller;
         controller.addObserver(this);

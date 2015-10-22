@@ -3,9 +3,11 @@ package de.htwg.sudoku;
 import de.htwg.sudoku.aview.gui.SudokuFrame;
 import de.htwg.sudoku.aview.tui.TextUI;
 import de.htwg.sudoku.controller.ISudokuController;
-import de.htwg.sudoku.controller.impl.SudokuController;
 
 import java.util.Scanner;
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
 public final class Sudoku {
 	/* Fields */
@@ -22,9 +24,17 @@ public final class Sudoku {
 
 	/* Methods */
 	public static void main(String[] args) {
+		
+        // Set up Google Guice Dependency Injector
+        Injector injector = Guice.createInjector(new SudokuModule());
 
-		// Build up the application
-		controller = new SudokuController(9);
+        // Build up the application, resolving dependencies automatically by
+        // Guice
+        controller = injector.getInstance(ISudokuController.class);
+        @SuppressWarnings("unused")
+        SudokuFrame gui = injector.getInstance(SudokuFrame.class);
+        tui = injector.getInstance(TextUI.class);
+     
 
         gui = new SudokuFrame(controller);
 		tui = new TextUI(controller);

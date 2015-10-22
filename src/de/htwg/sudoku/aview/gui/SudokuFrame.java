@@ -23,6 +23,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
+import com.google.inject.Inject;
+
 import de.htwg.sudoku.controller.ISudokuController;
 import de.htwg.sudoku.controller.SizeChangedEvent;
 import de.htwg.util.observer.Event;
@@ -43,6 +45,7 @@ public class SudokuFrame extends JFrame implements IObserver {
 
     private static final long serialVersionUID = 1L;
 
+    @Inject
     public SudokuFrame(final ISudokuController controller) {
         this.controller = controller;
         controller.addObserver(this);
