@@ -1,11 +1,13 @@
-package de.htwg.sudoku.model;
+package de.htwg.sudoku.model.impl;
+
+import de.htwg.sudoku.model.ICell;
 
 /**
  * A cell is the most fundamental field in a Sudoku puzzle.
  * It can be set to a value.
  * It has a row and column as coordinates.
  */
-public class Cell {
+public class Cell implements ICell{
 
     /* Fields */
     private int value;

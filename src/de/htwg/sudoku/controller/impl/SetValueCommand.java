@@ -1,14 +1,14 @@
 package de.htwg.sudoku.controller.impl;
 
-import de.htwg.sudoku.model.Cell;
+import de.htwg.sudoku.model.ICell;
 import de.htwg.util.command.UndoableCommand;
 
 public class SetValueCommand implements UndoableCommand {
 
-    private Cell cell;
+    private ICell cell;
     private int value;
 
-    public SetValueCommand(Cell cell, int value) {
+    public SetValueCommand(ICell cell, int value) {
         this.cell = cell;
         this.value = value;
     }

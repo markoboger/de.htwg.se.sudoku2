@@ -1,4 +1,4 @@
-package de.htwg.sudoku.model;
+package de.htwg.sudoku.model.impl;
 
 import static org.junit.Assert.*;
 import org.junit.Before;

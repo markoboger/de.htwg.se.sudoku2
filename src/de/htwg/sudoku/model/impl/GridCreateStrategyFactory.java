@@ -1,4 +1,4 @@
-package de.htwg.sudoku.model;
+package de.htwg.sudoku.model.impl;
 
 /**
  * Patterns: Abstract Factory This is the abstract factory for the strategy to

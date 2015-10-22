@@ -1,4 +1,4 @@
-package de.htwg.sudoku.model;
+package de.htwg.sudoku.model.impl;
 
 /**
  * Patterns: Strategy and TemplateMethod This class is the abstract strategy for

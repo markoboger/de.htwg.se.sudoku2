@@ -1,6 +1,9 @@
-package de.htwg.sudoku.model;
+package de.htwg.sudoku.model.impl;
 
 import java.util.*;
+
+import de.htwg.sudoku.model.ICell;
+import de.htwg.sudoku.model.IGrid;
 
 /**
  * The Grid is the playing field of a Sudoku puzzle.
@@ -8,7 +11,7 @@ import java.util.*;
  * Cells are organized in Houses.
  * The Grid has a size, which is the number of cells in a row or column. Size must be 1, 4, or 9.
  */
-public class Grid {
+public class Grid implements IGrid{
 
 /* Fields */
     private static final int MAXSIZE = 9;
@@ -372,4 +375,5 @@ public class Grid {
         }
         return true;
     }
+
 }

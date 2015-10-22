@@ -1,17 +1,17 @@
 package de.htwg.sudoku.controller.impl;
 
-import de.htwg.sudoku.model.Grid;
+import de.htwg.sudoku.model.IGrid;
 import de.htwg.util.command.UndoableCommand;
 import de.htwg.util.memento.Originator;
 
 public class SolveCommand extends Originator implements UndoableCommand {
 
 /* Fields */
-    private Grid grid;
+    private IGrid grid;
     private boolean result=false;
 
 /* Constructors */
-    public SolveCommand(Grid grid) {
+    public SolveCommand(IGrid grid) {
         this.grid = grid;
     }
 

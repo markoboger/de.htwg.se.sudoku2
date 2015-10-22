@@ -1,16 +1,16 @@
 package de.htwg.sudoku.controller.impl;
 
-import de.htwg.sudoku.model.Grid;
+import de.htwg.sudoku.model.IGrid;
 import de.htwg.util.command.UndoableCommand;
 import de.htwg.util.memento.Originator;
 
 
 public class ResetCommand extends Originator implements UndoableCommand {
 /* Fields */
-    private Grid grid;
+    private IGrid grid;
 
 /* Constructors */
-    public ResetCommand(Grid grid) {
+    public ResetCommand(IGrid grid) {
         this.grid = grid;
     }
 

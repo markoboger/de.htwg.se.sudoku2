@@ -2,8 +2,9 @@ package de.htwg.sudoku.controller.impl;
 
 import de.htwg.sudoku.controller.GameStatus;
 import de.htwg.sudoku.controller.ISudokuController;
-import de.htwg.sudoku.model.Cell;
-import de.htwg.sudoku.model.Grid;
+import de.htwg.sudoku.model.ICell;
+import de.htwg.sudoku.model.IGrid;
+import de.htwg.sudoku.model.impl.GridFactory;
 import de.htwg.util.command.UndoManager;
 
 import org.apache.logging.log4j.LogManager;
@@ -22,7 +23,7 @@ public class SudokuController extends Observable implements ISudokuController {
 
     private GameStatus status = GameStatus.WELCOME;
     private String statusText = "";
-    private Grid grid;
+    private IGrid grid;
 
 /* Constructors */
     public SudokuController(int size) {
@@ -32,7 +33,7 @@ public class SudokuController extends Observable implements ISudokuController {
 /* Getter and Setter */
     public void setGrid(int size) {
         try {
-            this.grid = new Grid(size);
+            this.grid = GridFactory.getInstance().create(size);
             UndoManager.reset();
         } catch (IllegalArgumentException e){
             LOGGER.info("Setting Grid to wrong size",e);
@@ -47,7 +48,7 @@ public class SudokuController extends Observable implements ISudokuController {
     }
 
     public void setValue(int row, int column, int value) {
-        Cell cell = grid.getCell(row, column);
+        ICell cell = grid.getCell(row, column);
         if (cell.isUnSet()) {
             UndoManager.doCommand(new SetValueCommand(cell,value));
             status = GameStatus.CELL_SET_SUCCESS;
@@ -97,7 +98,7 @@ public class SudokuController extends Observable implements ISudokuController {
     }
 
     public void showCandidates(int row, int column) {
-        Cell cell = grid.getCell(row, column);
+        ICell cell = grid.getCell(row, column);
         cell.toggleShowCandidates();
         BitSet set = grid.candidates(row, column);
         status = GameStatus.SHOW_CANDIDATES;

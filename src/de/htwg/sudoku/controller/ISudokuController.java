@@ -29,7 +29,7 @@ public interface ISudokuController extends IObservable {
      * @return the number of cells per row of a Sudoku puzzle. Tyical value is
      *         9.
      */
-//    int getCellsPerRow();
+    int getSize();
 
     /**
      * @return the textual representation of the Sudoku puzzle.
