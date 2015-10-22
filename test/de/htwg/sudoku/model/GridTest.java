@@ -279,7 +279,60 @@ public class GridTest {
         assertFalse(grid1.solve(2));
         assertTrue(grid4.solve(2));
     }
+    
+    @Test
+    public void testParseStringToGrid() {
+    	grid1.parseStringToGrid(grid1.toString());
+    	grid1.setCell(0,0,1);
+    	grid1.parseStringToGrid(grid1.toString());
+    	assertTrue(grid1.parseStringToGrid("."));
+    	assertTrue(grid1.parseStringToGrid("1"));
+    	grid4.parseStringToGrid(grid4.toString());
+    	assertFalse(grid4.parseStringToGrid("123456789"));
+    	assertTrue(grid4.parseStringToGrid("1234234134214321"));
+    	assertTrue(grid4.parseStringToGrid("12..2...342..32."));
+    	assertFalse(grid4.parseStringToGrid("nogridhere"));
+    }
 
+    @Test
+    public void testRemovePairsGridCreateStrategy(){
+    	assertTrue(GridCreateStrategyFactory.getStrategy() instanceof RemovePairsGridCreateStrategy);
+    	
+    	GridCreateStrategyFactory.setStrategy(new RemovePairsGridCreateStrategy());
+    	grid1.createStrategy = GridCreateStrategyFactory.getInstance();
+    	assertTrue(grid1.createStrategy instanceof RemovePairsGridCreateStrategy);
+    	grid1.create();
+    	grid1.solve();
+    	assertTrue(grid1.isSolved());
+    	
+    	GridCreateStrategyFactory.setStrategy(new RemovePairsGridCreateStrategy());
+    	grid4.createStrategy = GridCreateStrategyFactory.getInstance();
+    	assertTrue(grid4.createStrategy instanceof RemovePairsGridCreateStrategy);
+    	grid4.create();
+    	grid4.solve();
+    	assertTrue(grid4.isSolved());
+    	
+    	GridCreateStrategyFactory.setStrategy(new RemovePairsGridCreateStrategy());
+    	grid9.createStrategy = GridCreateStrategyFactory.getInstance();
+    	assertTrue(grid9.createStrategy instanceof RemovePairsGridCreateStrategy);
+    	grid9.create();
+    	grid9.solve();
+    	assertTrue(grid9.isSolved());
+    }
+    
+    
+    @Test
+    public void testRandomGridCreateStrategy(){
+    	GridCreateStrategyFactory.setStrategy(new RandomGridCreateStrategy());
+    	grid4.createStrategy = GridCreateStrategyFactory.getInstance();
+    	assertTrue(grid4.createStrategy instanceof RandomGridCreateStrategy);
+    	grid4.create();
+    	   	
+    	GridCreateStrategyFactory.setStrategy(new RandomGridCreateStrategy());
+    	grid9.createStrategy = GridCreateStrategyFactory.getInstance();
+    	assertTrue(grid9.createStrategy instanceof RandomGridCreateStrategy);
+    	grid9.create();
+    }
 
 
     /* Methods */
@@ -299,4 +352,6 @@ public class GridTest {
         return true;
     }
 
+    
+    
 }

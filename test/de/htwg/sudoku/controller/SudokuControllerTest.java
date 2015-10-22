@@ -88,16 +88,38 @@ public class SudokuControllerTest {
         controller1.solve();
         assertEquals(GameStatus.SOLVE_SUCCESS,controller1.getStatus());
     }
+    
+    @Test
+    public void testUndo() {
+    	controller1.setValue(0,0,1);
+    	controller1.undo();
+    	assertEquals(0,controller1.getValue(0,0));
+    	
+    	controller1.setValue(0,0,1);
+    	controller1.reset();
+    	controller1.undo();
+    	assertEquals(1,controller1.getValue(0,0));
+    	
+    	controller1.reset();
+    	controller1.solve();
+    	controller1.undo();
+    	assertEquals(0,controller1.getValue(0,0));
+    	
+    	controller1.setValue(0,0,1);
+    	controller1.create();
+    	controller1.undo();
+    	assertEquals(1,controller1.getValue(0,0));
+    }
 
-//    @Test
-//	public void testSolveFails() {
-//		controller4.create();
-//		controller4.setValue(0, 0, 1);
-//		controller4.setValue(1, 0, 1);
-//		controller4.setValue(1, 1, 1);
-//		controller4.solve();
-//
-//		assertEquals(GameStatus.SOLVE_FAIL,controller4.getStatus());
-//	}
+    @Test
+	public void testSolveFails() {
+		controller4.reset();
+		controller4.setValue(0, 0, 1);
+		controller4.setValue(1, 0, 1);
+		controller4.setValue(1, 1, 1);
+		controller4.solve();
+
+		assertEquals(GameStatus.SOLVE_FAIL,controller4.getStatus());
+	}
 
 }
