@@ -20,7 +20,7 @@ public class TextUI implements IObserver {
 
     private static final Logger LOGGER = LogManager.getLogger(TextUI.class.getName());
 
-    private SudokuController controller;
+    protected SudokuController controller;
 
     public TextUI(SudokuController controller) {
         this.controller = controller;
@@ -59,7 +59,7 @@ public class TextUI implements IObserver {
         controller.setValue(arg[0], arg[1], arg[2]);
     }
 
-    private boolean processSingleCharInput(String line) {
+    protected boolean processSingleCharInput(String line) {
         switch (line) {
             case "q":
                 return false;

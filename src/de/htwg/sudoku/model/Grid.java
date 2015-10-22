@@ -24,7 +24,7 @@ public class Grid {
     private int solutionCounter;
     private int steps;
     private List<Integer> permutation;
-    private GridCreateStrategyTemplate createStrategy = GridCreateStrategyFactory.getInstance();
+    protected GridCreateStrategyTemplate createStrategy = GridCreateStrategyFactory.getInstance();
 
 
     /* Constructors */

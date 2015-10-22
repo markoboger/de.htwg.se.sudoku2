@@ -16,7 +16,7 @@ public class UndoManager {
 
 /* Constructors */
     private UndoManager() {
-
+    	// only set to private to make it a Singleton
     }
 
 /* Methods */
