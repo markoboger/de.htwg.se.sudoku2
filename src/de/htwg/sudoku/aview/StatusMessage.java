@@ -26,6 +26,10 @@ public class StatusMessage {
         text.put(GameStatus.SHOW_CANDIDATES,"Possible values for this cell are: ");
         text.put(GameStatus.SOLVE_SUCCESS, "The Sudoku was solved successfully");
         text.put(GameStatus.SOLVE_FAIL, "Can not solve this Sudoku: ");
+        text.put(GameStatus.REDO, "Redid last change");
+        text.put(GameStatus.UNDO, "Undid last change");
+        text.put(GameStatus.COPY, "Copied the Sudoku to the clipboard");
+        text.put(GameStatus.PASTE, "Pasted the Sudoku from the clipboard");
     }
 
 }

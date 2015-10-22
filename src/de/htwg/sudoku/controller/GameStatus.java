@@ -5,16 +5,16 @@ package de.htwg.sudoku.controller;
  */
 public enum  GameStatus {
     WELCOME,
-    ILLEGAL_ARGUMENT,
+    CREATE,
     CELL_SET_SUCCESS,
     CELL_SET_FAIL,
-    CREATE,
     RESET,
+    ILLEGAL_ARGUMENT,
+    SHOW_CANDIDATES,
+    SOLVE_SUCCESS,
+    SOLVE_FAIL,
     REDO, 
     UNDO,
     COPY,
-    PAST,
-    SHOW_CANDIDATES,
-    SOLVE_SUCCESS,
-    SOLVE_FAIL
+    PASTE
 }

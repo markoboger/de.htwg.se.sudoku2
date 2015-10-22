@@ -218,7 +218,7 @@ public class SudokuController extends Observable implements ISudokuController {
                 statusText = "Could not read from Clipboard";
             }
         }
-        status = GameStatus.PAST;
+        status = GameStatus.PASTE;
         notifyObservers();
     }
     

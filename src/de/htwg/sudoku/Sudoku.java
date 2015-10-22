@@ -11,6 +11,8 @@ public final class Sudoku {
 	/* Fields */
 	private static Scanner scanner;
 	private static TextUI tui;
+	@SuppressWarnings("unused")
+	private static SudokuFrame gui;
 	protected static ISudokuController controller;
 
 	/* Constructor */
@@ -24,7 +26,7 @@ public final class Sudoku {
 		// Build up the application
 		controller = new SudokuController(9);
 
-        SudokuFrame gui = new SudokuFrame(controller);
+        gui = new SudokuFrame(controller);
 		tui = new TextUI(controller);
 
 		// Create an initial game

@@ -2,7 +2,6 @@ package de.htwg.sudoku.model.impl;
 
 import java.util.*;
 
-import de.htwg.sudoku.model.ICell;
 import de.htwg.sudoku.model.IGrid;
 
 /**
@@ -38,7 +37,7 @@ public class Grid implements IGrid{
         }
        if (!isSquareOfNaturalNumber(size)) {
             throw new IllegalArgumentException(
-                    "size must be a square of a natural number");
+                    "size must be a square of a natural number, like 1,4 or 9");
         }
         setSize(size);
         setBlockSize(blocksPerEdge(size));

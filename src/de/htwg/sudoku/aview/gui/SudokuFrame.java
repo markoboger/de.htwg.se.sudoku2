@@ -31,8 +31,8 @@ import de.htwg.util.observer.IObserver;
 public class SudokuFrame extends JFrame implements IObserver {
 
     private static final int SIZE_1BY1 = 1;
-    private static final int SIZE_4BY4 = 2;
-    private static final int SIZE_9BY9 = 3;
+    private static final int SIZE_4BY4 = 4;
+    private static final int SIZE_9BY9 = 9;
     private static final int DEFAULT_Y = 630;
     private static final int DEFAULT_X = 528;
     private Container pane;
