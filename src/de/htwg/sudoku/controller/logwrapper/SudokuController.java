@@ -6,7 +6,6 @@ import org.apache.logging.log4j.Logger;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import de.htwg.sudoku.aview.tui.TextUI;
 import de.htwg.sudoku.controller.GameStatus;
 import de.htwg.sudoku.controller.ISudokuController;
 import de.htwg.sudoku.model.IGridFactory;
@@ -17,7 +16,7 @@ import de.htwg.util.observer.IObserver;
 @Singleton
 public class SudokuController extends Observable implements ISudokuController {
 
-    private Logger logger = LogManager.getLogger(TextUI.class.getName());
+    private Logger logger = LogManager.getLogger(SudokuController.class.getName());
     private ISudokuController realController;
     private long startTime;
 
