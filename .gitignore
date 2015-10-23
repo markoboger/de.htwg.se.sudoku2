@@ -7,6 +7,9 @@ bin/
 # Intellij
 */.idea/workspace.xml 
 */.idea/tasks.xml
+.iml
+.ipr
+.iws
 
 # Gradle
 .gradle/
