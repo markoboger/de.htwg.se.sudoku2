@@ -249,4 +249,10 @@ public class SudokuController extends Observable implements ISudokuController {
 		
 	}
 
+	@Override
+	public void refresh() {
+		realController.refresh();
+		
+	}
+
 }

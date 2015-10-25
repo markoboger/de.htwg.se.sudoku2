@@ -33,7 +33,7 @@ public class TextUI implements IObserver {
 
     // @Override
     public void update(Event e) {
-        printTUI();
+    	LOGGER.entry(toString());
     }
 
     public boolean processInputLine(String line) {
@@ -48,8 +48,8 @@ public class TextUI implements IObserver {
                 // if the command line has the form 123, set the cell (1,2) to value 3
                 if (line.matches("[0-9][0-9][0-9]")) {
                     processTrippleCharInput(line);
-                } else
-                    LOGGER.entry("Illegal command: " + line);
+                } //else
+                   LOGGER.entry("Illegal command: " + line);
         return continu;
     }
 
@@ -67,6 +67,11 @@ public class TextUI implements IObserver {
         switch (line) {
             case "q":
                 return false;
+            case "":
+            case " ":
+            case "f":
+            	controller.refresh();
+            	break;
             case "r":
                 controller.reset();
                 break;
@@ -111,10 +116,21 @@ public class TextUI implements IObserver {
         return result;
     }
 
-    public void printTUI() {
-        LOGGER.entry(NEWLINE + controller.getGridString());
-        LOGGER.entry(NEWLINE + StatusMessage.text.get(controller.getStatus()) + controller.getStatusText());
-        LOGGER.entry(NEWLINE
-                + "Possible commands: q-quit, n-new, r-reset, s-solve, u-undo .,+,#-size, xy-show (x,y), xyz-set (x,y) to z");
+    public String toString() {
+    	String result="";
+        result += NEWLINE + controller.getGridString();
+        result += NEWLINE + StatusMessage.text.get(controller.getStatus()) + controller.getStatusText();
+        result += NEWLINE
+                + "Possible commands: q-quit, n-new, r-reset, f-refresh, s-solve, u-undo .,+,#-size, xy-show (x,y), xyz-set (x,y) to z";
+        return result;
     }
+    
+    public String toHtml() {
+    	String game =this.toString();
+    	String result = game.replace(NEWLINE, "<br>");
+    	result = result.replace("     ", " &nbsp; &nbsp; ");
+    	result = result.replace("   ", " &nbsp; ");
+    	return result;
+    }
+      	
 }

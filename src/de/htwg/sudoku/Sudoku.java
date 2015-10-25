@@ -12,35 +12,43 @@ import com.google.inject.Injector;
 public final class Sudoku {
 	/* Fields */
 	private static Scanner scanner;
-	private static TextUI tui;
+	private TextUI tui;
 	@SuppressWarnings("unused")
-	private static SudokuFrame gui;
-	protected static ISudokuController controller;
-
+    private SudokuFrame gui;
+	protected ISudokuController controller;
+    private static Sudoku instance = null;
+    
 	/* Constructor */
 	private Sudoku() {
-
-	}
-
-	/* Methods */
-	public static void main(String[] args) {
-		
-        // Set up Google Guice Dependency Injector
+		// Set up Google Guice Dependency Injector
         Injector injector = Guice.createInjector(new SudokuModule());
 
         // Build up the application, resolving dependencies automatically by
         // Guice
         controller = injector.getInstance(ISudokuController.class);
-        @SuppressWarnings("unused")
-        SudokuFrame gui = injector.getInstance(SudokuFrame.class);
-        tui = injector.getInstance(TextUI.class);
-     
-
+        tui = new TextUI(controller);
         gui = new SudokuFrame(controller);
-		tui = new TextUI(controller);
+        
+        // Create an initial game
+     	controller.create();
+	}
 
-		// Create an initial game
-		controller.create();
+	/* Methods */
+
+    public static Sudoku getInstance() {
+        if (instance == null) {
+            instance = new Sudoku();
+        }
+        return instance;
+    }
+    
+    public TextUI getTui() {
+    	return tui;
+    }
+    
+	public static void main(String[] args) {
+		
+		Sudoku game = Sudoku.getInstance();
 
 		if (args == null) {
 			// continue to read user input on the tui until the user decides to
@@ -48,11 +56,11 @@ public final class Sudoku {
 			boolean continu = true;
 			scanner = new Scanner(System.in);
 			while (continu) {
-				continu = tui.processInputLine(scanner.next());
+				continu = game.tui.processInputLine(scanner.next());
 			}
 		} else {
 			for (String input:args) {
-				tui.processInputLine(input);
+				game.tui.processInputLine(input);
 			}
 
 		}

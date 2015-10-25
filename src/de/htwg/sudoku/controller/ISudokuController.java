@@ -188,4 +188,6 @@ public interface ISudokuController extends IObservable {
      * @param newSize
      */
     void setGrid(int newSize);
+
+	void refresh();
 }

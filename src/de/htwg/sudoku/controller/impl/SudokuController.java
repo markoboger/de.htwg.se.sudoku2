@@ -124,6 +124,11 @@ public class SudokuController extends Observable implements ISudokuController {
         System.exit(0);
     }
     
+	@Override
+	public void refresh() {
+		notifyObservers();
+	}
+    
     public void undo() {
         UndoManager.undoCommand();
         notifyObservers();
@@ -233,4 +238,5 @@ public class SudokuController extends Observable implements ISudokuController {
         notifyObservers();
 
     }
+
 }
