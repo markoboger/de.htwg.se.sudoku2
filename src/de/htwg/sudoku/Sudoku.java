@@ -46,6 +46,10 @@ public final class Sudoku {
     	return tui;
     }
     
+    public ISudokuController getController() {
+    	return controller;
+    }
+    
 	public static void main(String[] args) {
 		
 		Sudoku game = Sudoku.getInstance();
