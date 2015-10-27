@@ -10,8 +10,8 @@ import de.htwg.sudoku.controller.ISudokuController;
 
 public class HighlightButton extends JToggleButton {
 
-    private String label;
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -4549749110922325962L;
+	private String label;
 
     public HighlightButton(String label, final ISudokuController controller,
             final int value) {

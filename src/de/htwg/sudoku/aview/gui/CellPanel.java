@@ -12,10 +12,10 @@ import de.htwg.sudoku.controller.ISudokuController;
 
 public class CellPanel extends JPanel {
 
-    private int row;
+	private static final long serialVersionUID = -6575384146898675406L;
+	private int row;
     private int column;
     private ISudokuController controller;
-    private static final long serialVersionUID = 1L;
 
     public CellPanel(int row, int column, ISudokuController controller) {
         this.row = row;

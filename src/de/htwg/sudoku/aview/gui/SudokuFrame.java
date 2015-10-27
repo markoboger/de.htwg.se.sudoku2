@@ -32,7 +32,8 @@ import de.htwg.util.observer.IObserver;
 
 public class SudokuFrame extends JFrame implements IObserver {
 
-    private static final int SIZE_1BY1 = 1;
+	private static final long serialVersionUID = -290010619584109226L;
+	private static final int SIZE_1BY1 = 1;
     private static final int SIZE_4BY4 = 4;
     private static final int SIZE_9BY9 = 9;
     private static final int DEFAULT_Y = 630;
@@ -42,8 +43,6 @@ public class SudokuFrame extends JFrame implements IObserver {
     private HighlightButtonPanel digitPanel;
     private StatusPanel statusPanel;
     private ISudokuController controller;
-
-    private static final long serialVersionUID = 1L;
 
     @Inject
     public SudokuFrame(final ISudokuController controller) {

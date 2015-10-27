@@ -2,8 +2,8 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <groupId></groupId>
-  <artifactId>de.htwg.se.sudoku2</artifactId>
+  <groupId>de.htwg.se</groupId>
+  <artifactId>sudoku2</artifactId>
   <version>unspecified</version>
   <inceptionYear>2015</inceptionYear>
   <licenses>

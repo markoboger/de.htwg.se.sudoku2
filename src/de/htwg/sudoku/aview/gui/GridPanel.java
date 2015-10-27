@@ -12,9 +12,9 @@ import de.htwg.sudoku.controller.ISudokuController;
 
 public class GridPanel extends JPanel {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -1720199250322184066L;
 
-    public GridPanel(ISudokuController controller) {
+	public GridPanel(ISudokuController controller) {
 
         int cellsPerEdge = controller.getSize();
         int blockSize = controller.getBlockSize();
