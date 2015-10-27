@@ -12,8 +12,8 @@ import de.htwg.sudoku.controller.ISudokuController;
 
 public class HighlightButtonPanel extends JPanel {
 
-    private final ButtonGroup group = new ButtonGroup();
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2089107953927359801L;
+	private final ButtonGroup group = new ButtonGroup();
     private static final int BUTTONSIZE=25; 
 
     public HighlightButtonPanel(final ISudokuController controller) {

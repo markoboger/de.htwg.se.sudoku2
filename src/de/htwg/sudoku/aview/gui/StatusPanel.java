@@ -12,8 +12,8 @@ import de.htwg.sudoku.controller.GameStatus;
 
 public class StatusPanel extends JPanel {
 
-    private final JLabel statusLabel = new JLabel("");
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -2136188660234901904L;
+	private final JLabel statusLabel = new JLabel("");
 
     public StatusPanel() {
         setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));

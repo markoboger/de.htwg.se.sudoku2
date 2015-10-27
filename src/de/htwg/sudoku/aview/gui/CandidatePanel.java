@@ -12,12 +12,13 @@ import de.htwg.sudoku.controller.ISudokuController;
 
 public class CandidatePanel extends JPanel {
 
-    private int candidate;
+	private static final long serialVersionUID = 3170090909448749049L;
+	private int candidate;
     private ISudokuController controller;
     private int row;
     private int column;
     private static final float SCALE_FACTOR = 0.75f;
-    private static final long serialVersionUID = 1L;
+   
 
     public CandidatePanel(final int row, final int column, int candidate,
             final ISudokuController controller) {
