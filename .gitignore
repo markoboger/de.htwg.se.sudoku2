@@ -4,6 +4,7 @@
 # Eclipse
 bin/
 .settings/
+.classpath
 
 # Intellij
 /.idea/
@@ -26,6 +27,8 @@ lib_managed/
 src_managed/
 project/boot/
 project/plugins/project/
+project/target/
+project/project/
 logs/
 project/.sbtserver
 .sbtserver/
