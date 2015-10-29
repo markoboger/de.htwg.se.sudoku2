@@ -2,8 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="output" path="bin"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
 	<classpathentry sourcepath="/Users/mboger/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.2/6aa90907dffee988bc5ed910c86243f10b6fd724/log4j-api-2.2-sources.jar" kind="lib" path="/Users/mboger/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.2/d7ef6ad7ff0711dd12fe409d62d72d6ed14516e0/log4j-api-2.2.jar"/>
 	<classpathentry sourcepath="/Users/mboger/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.2/5391b370654942b4d568eab6dfd423402a978556/log4j-core-2.2-sources.jar" kind="lib" path="/Users/mboger/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.2/c707664e020218f8529b9a5e55016ee15f0f82ac/log4j-core-2.2.jar"/>
 	<classpathentry sourcepath="/Users/mboger/.gradle/caches/modules-2/files-2.1/com.google.inject/guice/3.0/d117c4481f64955cb1862ed38cb568add2f5fe05/guice-3.0-sources.jar" kind="lib" path="/Users/mboger/.gradle/caches/modules-2/files-2.1/com.google.inject/guice/3.0/9d84f15fe35e2c716a02979fb62f50a29f38aefa/guice-3.0.jar"/>
