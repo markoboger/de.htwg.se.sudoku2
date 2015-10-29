@@ -21,16 +21,19 @@ public class SolveCommand extends Originator implements UndoableCommand {
     }
 
 /* Methods */
+    @Override
     public void doCommand() {
         result = false;
         setMemento(grid.toString("."));
         result = grid.solve();
     }
 
+    @Override
     public void undoCommand() {
         grid.parseStringToGrid(getMemento());
     }
     
+    @Override
     public void redoCommand() {
         result = false;
         setMemento(grid.toString("."));

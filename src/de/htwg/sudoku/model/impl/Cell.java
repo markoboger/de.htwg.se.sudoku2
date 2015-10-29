@@ -23,10 +23,12 @@ public class Cell implements ICell{
     }
 
     /* Getter and Setter */
+    @Override
     public int getValue() {
         return value;
     }
 
+    @Override
     public void setValue(int value) {
         this.value = value;
     }
@@ -47,10 +49,12 @@ public class Cell implements ICell{
         this.column = column;
     }
 
+    @Override
     public boolean isSet() {
         return value == 0 ? false : true;
     }
 
+    @Override
     public boolean isUnSet() {
         return !isSet();
     }
@@ -59,14 +63,17 @@ public class Cell implements ICell{
         given = b;
     }
 
+    @Override
     public boolean isGiven() {
         return given;
     }
 
+    @Override
     public void setShowCandidates(boolean showCandidates) {
         this.showCandidates = showCandidates;
     }
 
+    @Override
     public boolean isShowCandidates() {
         return showCandidates;
     }
@@ -78,10 +85,12 @@ public class Cell implements ICell{
         setShowCandidates(false);
     }
 
+    @Override
     public void toggleShowCandidates() {
         showCandidates = !showCandidates;
     }
 
+    @Override
     public String mkString() {
         return "(" + row + "," + column + ") = " + value;
     }

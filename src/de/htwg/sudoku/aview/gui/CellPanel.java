@@ -33,6 +33,7 @@ public class CellPanel extends JPanel {
         }
     }
 
+    @Override
     public void paintComponent(Graphics g) {
         g.setColor(Color.blue);
         final int inset = Constances.INSET;

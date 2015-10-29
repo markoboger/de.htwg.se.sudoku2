@@ -9,7 +9,8 @@ import java.util.Random;
 
 public class RemovePairsGridCreateStrategy extends GridCreateStrategyTemplate {
 
-    public void prepareGrid() {
+	@Override
+	public void prepareGrid() {
         grid.solve();
     }
 

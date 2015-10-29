@@ -8,18 +8,22 @@ public class Observable implements IObservable {
     private List<IObserver> subscribers = new ArrayList<IObserver>(2);
 
 /* Methods */
+    @Override
     public void addObserver(IObserver s) {
         subscribers.add(s);
     }
 
+    @Override
     public void removeObserver(IObserver s) {
         subscribers.remove(s);
     }
 
+    @Override
     public void removeAllObservers() {
         subscribers.clear();
     }
 
+    @Override
     public void notifyObservers() {
         notifyObservers(null);
     }

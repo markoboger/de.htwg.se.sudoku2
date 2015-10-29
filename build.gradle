@@ -56,26 +56,15 @@ task writeNewPom << {
         }
     }.writeTo("newpom.xml")
 }
-
-
-sonarRunner {
-    sonarProperties {
-        property "sonar.host.url", "http://lenny2.in.htwg-konstanz.de:9000/"
-        property "sonar.jdbc.url", "jdbc:h2:tcp://lenny2.in.htwg-konstanz.de:9092/sonar"
-//        property "sonar.host.url", "http://localhost/"
-//        property "sonar.jdbc.url", "jdbc:h2:tcp://localhost:9092/sonar"
-        property "sonar.jdbc.driverClassName", "org.h2.Driver"
-        property "sonar.jdbc.username", "sonar"
-        property "sonar.jdbc.password", "sonar"
-    }
     
 sonarqube {
     properties {
     property "sonar.projectName", "de.htwg.se.Sudoku2"
     property "sonar.projectKey", "de.htwg.se:Sudoku2"
     property "sonar.projectVersion", "1.0"
+    property "sonar.binaries", "build/classes"
+    property "sonar.java.coveragePlugin", "jacoco"
   }
-}
 }
 
 

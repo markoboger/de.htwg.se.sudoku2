@@ -18,16 +18,19 @@ public class HighlightButton extends JToggleButton {
         super(label);
         this.label = label;
         this.addMouseListener(new MouseAdapter() {
+        	@Override
             public void mousePressed(MouseEvent arg0) {
                 controller.highlight(value);
             }
         });
     }
 
+    @Override
     public String getLabel() {
         return label;
     }
 
+    @Override
     public Insets getInsets() {
         return new Insets(0, Constances.HORIZONTAL_INSET_SIZE, 0,
                 Constances.HORIZONTAL_INSET_SIZE);

@@ -1,13 +1,12 @@
+# Mac
+.DS_Store
 
 # Eclipse
-.settings/
 bin/
+.settings/
 
 # Intellij
 /.idea/
-
-# Mac
-.DS_Store
 
 # Maven
 log/
@@ -16,6 +15,24 @@ target/
 # Gradle
 /.gradle/
 /build/
+
+# sbt
+.cache
+.history
+.lib/
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+logs/
+project/.sbtserver
+.sbtserver/
+
+# Scala-IDE specific
+.scala_dependencies
+.worksheet
 
 # Sonar
 /.sonar/

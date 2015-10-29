@@ -14,27 +14,27 @@ public class HighlightButtonPanel extends JPanel {
 
 	private static final long serialVersionUID = 2089107953927359801L;
 	private final ButtonGroup group = new ButtonGroup();
-    private static final int BUTTONSIZE=25; 
+	private static final int BUTTONSIZE = 25;
 
-    public HighlightButtonPanel(final ISudokuController controller) {
+	public HighlightButtonPanel(final ISudokuController controller) {
 
-        int gridSize = controller.getSize();
-        setLayout(new FlowLayout());
+		int gridSize = controller.getSize();
+		setLayout(new FlowLayout());
 
-        add(new JLabel("Highlight:"));
+		add(new JLabel("Highlight:"));
 
-        JToggleButton button;
+		JToggleButton button;
 
-        // Construct the buttons used to select values to highlight.
-        for (int digit = 1; digit <= gridSize; digit++) {
-            String buttontext = String.valueOf(digit);
-            if (digit == 0) {
-                buttontext = " ";
-            }
-            button = new HighlightButton(buttontext, controller, digit);
-            button.setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
-            group.add(button);
-            add(button);
-        }
-    }
+		// Construct the buttons used to select values to highlight.
+		for (int digit = 1; digit <= gridSize; digit++) {
+			String buttontext = String.valueOf(digit);
+			if (digit == 0) {
+				buttontext = " ";
+			}
+			button = new HighlightButton(buttontext, controller, digit);
+			button.setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
+			group.add(button);
+			add(button);
+		}
+	}
 }

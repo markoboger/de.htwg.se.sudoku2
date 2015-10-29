@@ -65,8 +65,6 @@ public interface IGrid {
      */
     String toString(String string);
 
- //   String toJson();
-
     /**
      * Fill the cells of a grid with values parsed from the input string.
      * 

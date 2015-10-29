@@ -13,14 +13,17 @@ public class SetValueCommand implements UndoableCommand {
         this.value = value;
     }
 
+    @Override
     public void doCommand() {
         cell.setValue(value);
     }
 
+    @Override
     public void undoCommand() {
         cell.setValue(0);
     }
     
+    @Override
     public void redoCommand() {
         cell.setValue(value);
     }

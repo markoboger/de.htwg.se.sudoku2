@@ -14,40 +14,40 @@ public final class Sudoku {
 	private static Scanner scanner;
 	private TextUI tui;
 	@SuppressWarnings("unused")
-    private SudokuFrame gui;
+	private SudokuFrame gui;
 	protected ISudokuController controller;
-    private static Sudoku instance = null;
-    
+	private static Sudoku instance = null;
+
 	/* Constructor */
 	private Sudoku() {
 		// Set up Google Guice Dependency Injector
-        Injector injector = Guice.createInjector(new SudokuModule());
+		Injector injector = Guice.createInjector(new SudokuModule());
 
-        // Build up the application, resolving dependencies automatically by
-        // Guice
-        controller = injector.getInstance(ISudokuController.class);
-        tui = new TextUI(controller);
-        gui = new SudokuFrame(controller);
-        
-        // Create an initial game
-     	controller.create();
+		// Build up the application, resolving dependencies automatically by
+		// Guice
+		controller = injector.getInstance(ISudokuController.class);
+		tui = new TextUI(controller);
+		gui = new SudokuFrame(controller);
+
+		// Create an initial game
+		controller.create();
 	}
 
 	/* Methods */
 
-    public static Sudoku getInstance() {
-        if (instance == null) {
-            instance = new Sudoku();
-        }
-        return instance;
-    }
-    
-    public TextUI getTui() {
-    	return tui;
-    }
-    
+	public static Sudoku getInstance() {
+		if (instance == null) {
+			instance = new Sudoku();
+		}
+		return instance;
+	}
+
+	public TextUI getTui() {
+		return tui;
+	}
+
 	public static void main(String[] args) {
-		
+
 		Sudoku game = Sudoku.getInstance();
 
 		if (args == null) {
@@ -59,7 +59,7 @@ public final class Sudoku {
 				continu = game.tui.processInputLine(scanner.next());
 			}
 		} else {
-			for (String input:args) {
+			for (String input : args) {
 				game.tui.processInputLine(input);
 			}
 

@@ -16,15 +16,18 @@ public class ResetCommand extends Originator implements UndoableCommand {
 
 /* Getter and Setter */
 /* Methods */
+    @Override
     public void doCommand() {
         setMemento(grid.toString("."));
         grid.reset();
     }
 
+    @Override
     public void undoCommand() {
         grid.parseStringToGrid(getMemento());
     }
     
+    @Override
     public void redoCommand() {
         setMemento(grid.toString("."));
         grid.reset();

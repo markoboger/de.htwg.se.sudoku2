@@ -30,7 +30,7 @@ public class Grid implements IGrid{
 
 
     /* Constructors */
-    public Grid(int size) throws IllegalArgumentException{
+    public Grid(int size) {
         if (size < 1 || MAXSIZE < size) {
             throw new IllegalArgumentException(
                     "size must be between 1 and " + MAXSIZE);
@@ -67,6 +67,7 @@ public class Grid implements IGrid{
     }
 
     /* Getter and Setter */
+    @Override
     public int getSize() {
         return size;
     }
@@ -74,6 +75,8 @@ public class Grid implements IGrid{
     public void setSize(int size) {
         this.size = size;
     }
+    
+    @Override
     public Cell getCell(int row, int column) {
         return cells[row][column];
     }
@@ -82,6 +85,7 @@ public class Grid implements IGrid{
         cells[row][column].setValue(value);
     }
 
+    @Override
     public int getBlockSize() {
         return blockSize;
     }
@@ -94,6 +98,7 @@ public class Grid implements IGrid{
         return rows[index];
     }
 
+    @Override
     public int getSteps() {
         return steps;
     }
@@ -105,6 +110,7 @@ public class Grid implements IGrid{
      * calculates the index that should be used to identify the block in the
      * blocks array at coordinate (row, column).
      */
+    @Override
     public final int blockAt(int row, int column) {
         return column / blockSize + (blockSize * (row / blockSize));
     }
@@ -138,6 +144,7 @@ public class Grid implements IGrid{
      * @return is encoded in a BitSet: if BitSet at index 1 is true, the value 1
      *         is a valid candidate.
      */
+    @Override
     public BitSet candidates(int row, int column) {
         BitSet candidates = new BitSet(getSize() + 1);
         candidates.set(1, getSize() + 1, true);
@@ -160,6 +167,7 @@ public class Grid implements IGrid{
         return candidates(row, column).nextSetBit(random.nextInt(maxindex));
     }
 
+    @Override
     public void reset() {
         for (int row = 0; row < getSize(); row++) {
             for (int column = 0; column < getSize(); column++) {
@@ -168,6 +176,7 @@ public class Grid implements IGrid{
         }
     }
 
+    @Override
     public void create() {
         createStrategy.createNewGrid(this);
     }
@@ -243,6 +252,7 @@ public class Grid implements IGrid{
         return toString(" ");
     }
 
+    @Override
     public String toString(String zero) {
         String newLine = System.getProperty("line.separator");
         String result = blockSeparator(blockSize) + newLine;
@@ -266,6 +276,7 @@ public class Grid implements IGrid{
      * @return true if the parsing was successful, i.e. it found size*size
      *         digits.
      */
+    @Override
     public boolean parseStringToGrid(String input) {
         return parseStringToGrid(input, ".");
     }
@@ -302,6 +313,7 @@ public class Grid implements IGrid{
      *
      * @return true if the Sudoku was solved
      */
+    @Override
     public boolean solve() {
         initSolve();
         return solve(0, 0, 1);
