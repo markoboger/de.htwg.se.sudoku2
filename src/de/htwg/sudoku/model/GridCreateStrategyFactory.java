@@ -10,7 +10,7 @@ public abstract class GridCreateStrategyFactory {
 
 /* Constructors */
     private GridCreateStrategyFactory(){
-
+    	//only needs to be set to private to make it a Singleton
     }
 
 /* Getter and Setter */
