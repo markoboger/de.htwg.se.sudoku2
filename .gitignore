@@ -16,6 +16,7 @@ target/
 # Gradle
 /.gradle/
 /build/
+pom.xml
 
 # sbt
 .cache
