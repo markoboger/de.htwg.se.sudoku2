@@ -1,0 +1,64 @@
+
+
+plugins {
+  id "org.sonarqube" version "1.0"
+}
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: "java"
+apply plugin: "idea"
+apply plugin: "sonar-runner"
+apply plugin: "org.sonarqube"
+apply plugin: "eclipse"
+apply plugin: "maven"
+
+idea {
+    project {
+        //if you want to set specific jdk and language level
+        jdkName = '1.7'
+        languageLevel = '1.7'
+    }
+}
+
+dependencies {
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api',  version: '2.2'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.2'
+    compile group: 'com.google.inject',        name: 'guice',      version: '3.0'
+
+    testCompile "junit:junit:4.11"
+    
+    
+}
+
+sourceSets {
+    main.java.srcDir "src"
+    test.java.srcDir "test"
+}
+
+jar {
+    manifest.attributes "Main-Class":"de.htwg.sudoku.Sudoku"
+}
+
+task writeNewPom << {
+    pom {
+        project {
+            inceptionYear '2015'
+        }
+    }.writeTo("pom.xml")
+}
+    
+sonarqube {
+    properties {
+    property "sonar.projectName", "de.htwg.se.Sudoku2"
+    property "sonar.projectKey", "de.htwg.se:Sudoku2"
+    property "sonar.projectVersion", "1.0"
+    property "sonar.binaries", "build/classes"
+    property "sonar.java.coveragePlugin", "jacoco"
+  }
+}
+
+
+
