@@ -1,20 +1,44 @@
-
-# Eclipse
-.classpath
-.project
-.settings/
-bin/
-
-# Intellij
-*/.idea/workspace.xml 
-*/.idea/tasks.xml
-
 # Mac
 .DS_Store
+
+# Eclipse
+bin/
+.settings/
+.classpath
+
+# Intellij
+/.idea/
 
 # Maven
 log/
 target/
+
+# Gradle
+/.gradle/
+/build/
+
+# sbt
+.cache
+.history
+.lib/
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+project/target/
+project/project/
+logs/
+project/.sbtserver
+.sbtserver/
+
+# Scala-IDE specific
+.scala_dependencies
+.worksheet
+
+# Sonar
+/.sonar/
 
 # Application
 /sudoku.log
