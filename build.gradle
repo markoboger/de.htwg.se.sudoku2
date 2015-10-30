@@ -12,6 +12,7 @@ apply plugin: "sonar-runner"
 apply plugin: "org.sonarqube"
 apply plugin: "eclipse"
 apply plugin: "maven"
+apply plugin: "jacoco"
 
 idea {
     project {
@@ -25,10 +26,7 @@ dependencies {
     compile group: 'org.apache.logging.log4j', name: 'log4j-api',  version: '2.2'
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.2'
     compile group: 'com.google.inject',        name: 'guice',      version: '3.0'
-
     testCompile "junit:junit:4.11"
-    
-    
 }
 
 sourceSets {
@@ -40,10 +38,12 @@ jar {
     manifest.attributes "Main-Class":"de.htwg.sudoku.Sudoku"
 }
 
-task writeNewPom << {
+task pom << {
     pom {
         project {
-            inceptionYear '2015'
+        	groupId 'de.htwg.se'
+  			artifactId 'de.htwg.se.sudoku2'
+            version '2.0'
         }
     }.writeTo("pom.xml")
 }
@@ -51,8 +51,8 @@ task writeNewPom << {
 sonarqube {
     properties {
     property "sonar.projectName", "de.htwg.se.Sudoku2"
-    property "sonar.projectKey", "de.htwg.se:Sudoku2"
-    property "sonar.projectVersion", "1.0"
+    property "sonar.projectKey", "de.htwg.se.Sudoku2"
+    property "sonar.projectVersion", "2.0"
     property "sonar.binaries", "build/classes"
     property "sonar.java.coveragePlugin", "jacoco"
   }
