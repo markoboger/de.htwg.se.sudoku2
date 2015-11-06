@@ -3,10 +3,6 @@ package de.htwg.sudoku.aview.gui;
 import java.awt.Color;
 
 public final class Constances {
-	
-	private Constances(){
-		//hide public constructor
-	}
     
     /** The color used to fill cells that are given at the start of the game. */
     public static final Color GIVEN_BACKGROUND_COLOR = new Color(200, 200, 255);
@@ -39,5 +35,9 @@ public final class Constances {
 
     /** Inset used for toggle buttons */
     public static final int HORIZONTAL_INSET_SIZE = 7;
+    
+    private Constances(){
+		//hide public constructor
+	}
 
 }
