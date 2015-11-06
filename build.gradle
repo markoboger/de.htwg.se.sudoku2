@@ -17,8 +17,8 @@ apply plugin: "jacoco"
 idea {
     project {
         //if you want to set specific jdk and language level
-        jdkName = '1.7'
-        languageLevel = '1.7'
+        jdkName = '1.8'
+        languageLevel = '1.8'
     }
 }
 
@@ -45,7 +45,11 @@ task pom << {
   			artifactId 'de.htwg.se.sudoku2'
             version '2.0'
         }
-    }.writeTo("pom.xml")
+    }.withXml {
+    asNode().appendNode('build').with {
+        appendNode('sourceDirectory', 'src').parent().appendNode('testSourceDirectory', 'test')
+    }
+}.writeTo("pom.xml")
 }
     
 sonarqube {
