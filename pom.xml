@@ -33,5 +33,15 @@
   <build>
     <sourceDirectory>src</sourceDirectory>
     <testSourceDirectory>test</testSourceDirectory>
+    <plugins>
+		<plugin>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.1</version>
+			<configuration>
+				<source/>
+				<target/>
+			</configuration>
+		</plugin>
+	</plugins>
   </build>
 </project>
