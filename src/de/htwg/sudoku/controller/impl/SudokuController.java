@@ -132,11 +132,6 @@ public class SudokuController extends Observable implements ISudokuController {
 		return grid.blockAt(row, column);
 	}
 
-	/* Methods */
-	@Override
-	public void exit() {
-		System.exit(0);
-	}
 
 	@Override
 	public void refresh() {

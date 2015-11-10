@@ -131,7 +131,8 @@ public class SudokuFrame extends JFrame implements IObserver {
 		quitMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				controller.exit();
+				setVisible(false); 
+            	dispose();
 			}
 		});
 		fileMenu.add(quitMenuItem);

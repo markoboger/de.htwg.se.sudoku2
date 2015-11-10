@@ -145,13 +145,6 @@ public class SudokuController extends Observable implements ISudokuController {
 	}
 
 	@Override
-	public void exit() {
-		pre();
-		realController.exit();
-		post();
-	}
-
-	@Override
 	public void showAllCandidates() {
 		pre();
 		realController.showAllCandidates();

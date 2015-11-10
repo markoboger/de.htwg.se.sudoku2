@@ -54,7 +54,7 @@ public final class Sudoku {
 
 		Sudoku game = Sudoku.getInstance();
 
-		if (args == null) {
+		if (args.length == 0) {
 			// continue to read user input on the tui until the user decides to
 			// quit
 			boolean continu = true;

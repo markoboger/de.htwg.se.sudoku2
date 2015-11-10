@@ -37,35 +37,44 @@ public class TextUI implements IObserver {
 
 	public boolean processInputLine(String line) {
 		boolean continu = true;
-		if (line.matches(".")) {
-			continu = processSingleCharInput(line);
-		} else
-		// if the command line has the form 12, get the candidates of cell (1,2)
-		if (line.matches("[0-9][0-9]")) {
-			processDoubleCharInput(line);
+		if (line.matches("q")) {
+			continu = false;
+		} else if (line.matches("\\D")) {
+			processSingleCharInput(line);
 		} else
 		// if the command line has the form 123, set the cell (1,2) to value 3
 		if (line.matches("[0-9][0-9][0-9]")) {
-			processTrippleCharInput(line);
-		} // else
-		LOGGER.entry("Illegal command: " + line);
+			processTrippleDigitInput(line);
+		} else
+		// if the command line has the form 12, get the candidates of cell (1,2)
+		if (line.matches("[0-9][0-9]")) {
+			processDoubleDigitInput(line);
+		} else 
+		// if the command line has the form 5, highlight cells that have 5 as candidate
+		if (line.matches("[0-9]")) {
+			processSingleDigitInput(line);
+		} else
+			LOGGER.entry("Illegal command: " + line);
 		return continu;
 	}
 
-	private void processDoubleCharInput(String line) {
+	private void processSingleDigitInput(String line) {
+		int[] arg = readToArray(line);
+		controller.highlight(arg[0]);
+	}
+
+	private void processDoubleDigitInput(String line) {
 		int[] arg = readToArray(line);
 		controller.showCandidates(arg[0], arg[1]);
 	}
 
-	private void processTrippleCharInput(String line) {
+	private void processTrippleDigitInput(String line) {
 		int[] arg = readToArray(line);
 		controller.setValue(arg[0], arg[1], arg[2]);
 	}
 
-	protected boolean processSingleCharInput(String line) {
+	protected void processSingleCharInput(String line) {
 		switch (line) {
-		case "q":
-			return false;
 		case "":
 		case " ":
 		case "f":
@@ -101,7 +110,6 @@ public class TextUI implements IObserver {
 		default:
 			LOGGER.entry("Illegal command: " + line);
 		}
-		return true;
 	}
 
 	private int[] readToArray(String line) {

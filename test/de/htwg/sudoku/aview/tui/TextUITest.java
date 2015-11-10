@@ -20,13 +20,12 @@ public class TextUITest {
 
 	@Test
 	public void testProcessSingleCharInput() {
-		assertFalse(tui.processSingleCharInput("q"));
-		assertTrue(tui.processSingleCharInput("r"));
-		assertTrue(tui.processSingleCharInput("n"));
-		assertTrue(tui.processSingleCharInput("s"));
-		assertTrue(tui.processSingleCharInput("u"));
-		assertTrue(tui.processSingleCharInput("."));
-		assertTrue(tui.processSingleCharInput("+"));
+		tui.processSingleCharInput("r");
+		tui.processSingleCharInput("n");
+		tui.processSingleCharInput("s");
+		tui.processSingleCharInput("u");
+		tui.processSingleCharInput(".");
+		tui.processSingleCharInput("+");
 		
 	}
 
