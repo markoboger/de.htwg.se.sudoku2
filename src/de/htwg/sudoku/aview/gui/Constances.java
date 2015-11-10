@@ -35,5 +35,9 @@ public final class Constances {
 
     /** Inset used for toggle buttons */
     public static final int HORIZONTAL_INSET_SIZE = 7;
+    
+    private Constances(){
+		//hide public constructor
+	}
 
 }

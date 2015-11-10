@@ -4,6 +4,7 @@
 # Eclipse
 bin/
 .settings/
+.classpath
 
 # Intellij
 /.idea/
@@ -15,6 +16,7 @@ target/
 # Gradle
 /.gradle/
 /build/
+pom.xml
 
 # sbt
 .cache
@@ -26,6 +28,8 @@ lib_managed/
 src_managed/
 project/boot/
 project/plugins/project/
+project/target/
+project/project/
 logs/
 project/.sbtserver
 .sbtserver/

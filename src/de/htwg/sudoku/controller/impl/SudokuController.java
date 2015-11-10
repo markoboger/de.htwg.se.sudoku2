@@ -36,6 +36,7 @@ public class SudokuController extends Observable implements ISudokuController {
 	private IGridFactory gridFactory;
 	private int highlighted;
 	private static final int NORMALGRID = 9;
+	private boolean showCandidates = false;
 
 	/* Constructors */
 	@Inject
@@ -188,9 +189,10 @@ public class SudokuController extends Observable implements ISudokuController {
 
 	@Override
 	public void showAllCandidates() {
+		showCandidates = !showCandidates;
 		for (int row = 0; row < grid.getSize(); row++) {
 			for (int col = 0; col < grid.getSize(); col++) {
-				showCandidates(row, col);
+				grid.getCell(row, col).setShowCandidates(showCandidates);
 			}
 		}
 		notifyObservers();

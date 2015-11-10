@@ -16,7 +16,7 @@ import de.htwg.util.observer.IObserver;
 @Singleton
 public class SudokuController extends Observable implements ISudokuController {
 
-	private static final Logger logger = LogManager.getLogger(SudokuController.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(SudokuController.class.getName());
 	private ISudokuController realController;
 	private long startTime;
 
@@ -26,14 +26,14 @@ public class SudokuController extends Observable implements ISudokuController {
 	}
 
 	private void pre() {
-		logger.debug("Controller method " + getMethodName(1) + " was called.");
+		LOGGER.debug("Controller method " + getMethodName(1) + " was called.");
 		startTime = System.nanoTime();
 	}
 
 	private void post() {
 		long endTime = System.nanoTime();
 		long duration = endTime - startTime;
-		logger.debug("Controller method " + getMethodName(1) + " was finished in " + duration + " nanoSeconds.");
+		LOGGER.debug("Controller method " + getMethodName(1) + " was finished in " + duration + " nanoSeconds.");
 	}
 
 	private static String getMethodName(final int depth) {

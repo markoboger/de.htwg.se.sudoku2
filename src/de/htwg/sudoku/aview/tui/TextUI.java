@@ -140,5 +140,4 @@ public class TextUI implements IObserver {
 		result = result.replace("   ", " &nbsp; ");
 		return result;
 	}
-
 }
