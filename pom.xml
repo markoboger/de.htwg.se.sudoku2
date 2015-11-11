@@ -52,6 +52,9 @@
                     </goals>
                 </execution>
             </executions>
+             <configuration>
+                <destFile>${sonar.jacoco.reportPath}</destFile>
+            </configuration>
         </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
