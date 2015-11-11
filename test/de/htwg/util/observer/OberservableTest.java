@@ -1,4 +1,4 @@
-package de.htwg.sudoku.util.observer;
+package de.htwg.util.observer;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -29,6 +29,8 @@ import java.util.BitSet;
 public class SudokuController extends Observable implements ISudokuController {
 	/* Fields */
 	private static final Logger LOGGER = LogManager.getLogger(SudokuController.class.getName());
+	
+	private UndoManager undoManager = new UndoManager();
 
 	private GameStatus status = GameStatus.WELCOME;
 	private String statusText = "";
@@ -50,7 +52,7 @@ public class SudokuController extends Observable implements ISudokuController {
 	public void setGrid(int size) {
 		try {
 			this.grid = gridFactory.create(size);
-			UndoManager.reset();
+			undoManager.reset();
 		} catch (IllegalArgumentException e) {
 			LOGGER.info("Setting Grid to wrong size", e);
 			status = GameStatus.ILLEGAL_ARGUMENT;
@@ -68,7 +70,7 @@ public class SudokuController extends Observable implements ISudokuController {
 	public void setValue(int row, int column, int value) {
 		ICell cell = grid.getCell(row, column);
 		if (cell.isUnSet()) {
-			UndoManager.doCommand(new SetValueCommand(cell, value));
+			undoManager.doCommand(new SetValueCommand(cell, value));
 			status = GameStatus.CELL_SET_SUCCESS;
 			statusText = cell.mkString();
 		} else {
@@ -141,20 +143,20 @@ public class SudokuController extends Observable implements ISudokuController {
 
 	@Override
 	public void undo() {
-		UndoManager.undoCommand();
+		undoManager.undoCommand();
 		notifyObservers();
 	}
 
 	@Override
 	public void redo() {
-		UndoManager.redoCommand();
+		undoManager.redoCommand();
 		status = GameStatus.REDO;
 		notifyObservers();
 	}
 
 	@Override
 	public void reset() {
-		UndoManager.doCommand(new ResetCommand(grid));
+		undoManager.doCommand(new ResetCommand(grid));
 		status = GameStatus.RESET;
 		statusText = "";
 		notifyObservers();
@@ -162,7 +164,7 @@ public class SudokuController extends Observable implements ISudokuController {
 
 	@Override
 	public void create() {
-		UndoManager.doCommand(new CreateCommand(grid));
+		undoManager.doCommand(new CreateCommand(grid));
 		grid.create();
 		status = GameStatus.CREATE;
 		statusText = "";
@@ -208,7 +210,7 @@ public class SudokuController extends Observable implements ISudokuController {
 	public void solve() {
 		boolean result;
 		SolveCommand command = new SolveCommand(grid);
-		UndoManager.doCommand(command);
+		undoManager.doCommand(command);
 
 		result = command.getResult();
 		if (result) {

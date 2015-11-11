@@ -15,18 +15,13 @@ public class UndoManager {
 
 	private static UndoableCommand topCommand;
 
-	/* Constructors */
-	private UndoManager() {
-		// only set to private to make it a Singleton
-	}
-
 	/* Methods */
-	public static void doCommand(UndoableCommand newCommand) {
+	public void doCommand(UndoableCommand newCommand) {
 		newCommand.doCommand();
 		undoStack.push(newCommand);
 	}
 
-	public static void undoCommand() {
+	public void undoCommand() {
 		if (!undoStack.isEmpty()) {
 			topCommand = undoStack.pop();
 			topCommand.undoCommand();
@@ -34,14 +29,14 @@ public class UndoManager {
 		}
 	}
 
-	public static void redoCommand() {
+	public void redoCommand() {
 		if (!redoStack.isEmpty()) {
 			topCommand = redoStack.pop();
 			topCommand.redoCommand();
 		}
 	}
 
-	public static void reset() {
+	public void reset() {
 		undoStack.clear();
 	}
 }
