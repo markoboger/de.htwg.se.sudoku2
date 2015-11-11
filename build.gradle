@@ -37,25 +37,11 @@ sourceSets {
 jar {
     manifest.attributes "Main-Class":"de.htwg.sudoku.Sudoku"
 }
-
-task pom << {
-    pom {
-        project {
-        	groupId 'de.htwg.se'
-  			artifactId 'de.htwg.se.sudoku2'
-            version '2.0'
-        }
-    }.withXml {
-    asNode().appendNode('build').with {
-        appendNode('sourceDirectory', 'src').parent().appendNode('testSourceDirectory', 'test')
-    }
-}.writeTo("pom.xml")
-}
-    
+  
 sonarqube {
     properties {
-    property "sonar.projectName", "de.htwg.se.Sudoku2"
-    property "sonar.projectKey", "de.htwg.se.Sudoku2"
+    property "sonar.projectName", "de.htwg.se.sudoku2"
+    property "sonar.projectKey", "de.htwg.se.sudoku2"
     property "sonar.projectVersion", "2.0"
     property "sonar.binaries", "build/classes"
     property "sonar.java.coveragePlugin", "jacoco"
