@@ -36,12 +36,12 @@ sourceSets {
 }
 
 jar {
-    manifest.attributes "Main-Class":"de.htwg.sudoku.Sudoku"
+    manifest.attributes "Main-Class":"de.htwg.se.sudoku.Sudoku"
 }
   
 sonarqube {
     properties {
-    property "sonar.projectName", "de.htwg.se.sudoku2"
+    property "sonar.projectName", "SE2015WS-00-Sudoku2"
     property "sonar.projectKey", "de.htwg.se.sudoku2"
     property "sonar.projectVersion", "2.0"
     property "sonar.binaries", "build/classes"
