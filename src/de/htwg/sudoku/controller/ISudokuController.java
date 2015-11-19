@@ -157,6 +157,11 @@ public interface ISudokuController extends IObservable {
      * Calculates a solution for a Sudoku puzzle.
      */
     void solve();
+    
+    /**
+     * Creates a serialized for of grid in the JSON format as String
+     */
+    String toJson();
 
     /**
      * Undo the last undoable change to the puzzle.

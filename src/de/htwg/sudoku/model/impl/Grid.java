@@ -2,6 +2,12 @@ package de.htwg.sudoku.model.impl;
 
 import java.util.*;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import de.htwg.sudoku.model.IGrid;
 
 /**
@@ -14,6 +20,8 @@ public class Grid implements IGrid{
 
 /* Fields */
     private static final int MAXSIZE = 9;
+    
+	private static final Logger LOGGER = LogManager.getLogger(Grid.class.getName());
 
     private int size;
     private int blockSize;
@@ -265,6 +273,43 @@ public class Grid implements IGrid{
         }
         return result;
     }
+    
+    
+    public String toJson() {
+        String result = "";
+        try {
+            int size = getSize();
+            @SuppressWarnings("unchecked")
+            Map<String, Object> mapMatrix[][] = new HashMap[size][size];
+            for (int row = 0; row < size; row++) {
+                for (int col = 0; col < size; col++) {
+                    mapMatrix[row][col] = new HashMap<String, Object>();
+                    mapMatrix[row][col].put("cell", getCell(row, col));
+                    boolean[] candidates = new boolean[size];
+                    for (int candidate = 0; candidate < size; candidate++) {
+                        candidates[candidate] = isCandidate(row, col,candidate + 1);
+                    }
+                    mapMatrix[row][col].put("candidates", candidates);
+                }
+            }
+
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("meta", this);
+            map.put("grid", mapMatrix);
+            ObjectMapper mapper = new ObjectMapper();
+
+            result = mapper.writeValueAsString(map);
+        } catch (JsonProcessingException e) {
+            LOGGER.debug( e.toString());
+           
+        }
+        return result;
+    }
+    
+    private boolean isCandidate(int row, int column, int candidate) {
+        return candidates(row, column).get(candidate);
+    }
+
 
     /**
      * takes a String and parses numbers out of it and fills the grid with these

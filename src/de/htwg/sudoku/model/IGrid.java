@@ -84,4 +84,9 @@ public interface IGrid {
      */
     BitSet candidates(int row, int col);
 
+    /**
+     * Create a serialized representation of Grid in JSON format as String.
+     */
+	String toJson();
+
 }

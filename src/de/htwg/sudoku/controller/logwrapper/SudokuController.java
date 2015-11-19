@@ -244,4 +244,9 @@ public class SudokuController extends Observable implements ISudokuController {
 
 	}
 
+	@Override
+	public String toJson() {
+		return realController.toJson();
+	}
+
 }

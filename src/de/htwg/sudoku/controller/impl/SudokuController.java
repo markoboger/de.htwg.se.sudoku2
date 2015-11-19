@@ -256,5 +256,10 @@ public class SudokuController extends Observable implements ISudokuController {
 		notifyObservers();
 
 	}
+	
+	@Override
+	public String toJson() {
+		return grid.toJson();
+	}
 
 }
