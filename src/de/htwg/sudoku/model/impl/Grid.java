@@ -277,32 +277,36 @@ public class Grid implements IGrid{
     
     public String toJson() {
         String result = "";
-        try {
+  
             int size = getSize();
-            @SuppressWarnings("unchecked")
-            Map<String, Object> mapMatrix[][] = new HashMap[size][size];
+            Map<String, Object> sudoku = new HashMap<String,Object>();
+            sudoku.put("size",size);
+            Map<String, Object> grid = new HashMap<String,Object>();
             for (int row = 0; row < size; row++) {
                 for (int col = 0; col < size; col++) {
-                    mapMatrix[row][col] = new HashMap<String, Object>();
-                    mapMatrix[row][col].put("cell", getCell(row, col));
+                	Map<String, Object> cell = new HashMap<String,Object>();
+                	cell.put("row", row);
+                	cell.put("col", col);
+                	cell.put("val", getCell(row,col).getValue());
+                	cell.put("isGiven", getCell(row,col).isGiven());
+                	cell.put("isSet", getCell(row,col).isSet());
                     boolean[] candidates = new boolean[size];
                     for (int candidate = 0; candidate < size; candidate++) {
-                        candidates[candidate] = isCandidate(row, col,candidate + 1);
+                    	candidates[candidate] = isCandidate(row, col,candidate + 1);
                     }
-                    mapMatrix[row][col].put("candidates", candidates);
-                }
+                    cell.put("candidates", candidates);
+                    grid.put("cell", cell);
             }
-
-            Map<String, Object> map = new HashMap<String, Object>();
-            map.put("meta", this);
-            map.put("grid", mapMatrix);
-            ObjectMapper mapper = new ObjectMapper();
-
-            result = mapper.writeValueAsString(map);
-        } catch (JsonProcessingException e) {
-            LOGGER.debug( e.toString());
-           
         }
+        sudoku.put("grid", grid);
+
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+			result = mapper.writeValueAsString(sudoku);
+		} catch (JsonProcessingException e) {
+			LOGGER.info("JSON conversion failed");
+		}
+
         return result;
     }
     
