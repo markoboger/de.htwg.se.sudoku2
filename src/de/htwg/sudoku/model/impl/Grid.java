@@ -278,24 +278,24 @@ public class Grid implements IGrid{
     public String toJson() {
         String result = "";
   
-            int size = getSize();
-            Map<String, Object> sudoku = new HashMap<String,Object>();
-            sudoku.put("size",size);
-            Map<String, Object> grid = new HashMap<String,Object>();
-            for (int row = 0; row < size; row++) {
-                for (int col = 0; col < size; col++) {
-                	Map<String, Object> cell = new HashMap<String,Object>();
-                	cell.put("row", row);
-                	cell.put("col", col);
-                	cell.put("val", getCell(row,col).getValue());
-                	cell.put("isGiven", getCell(row,col).isGiven());
-                	cell.put("isSet", getCell(row,col).isSet());
-                    boolean[] candidates = new boolean[size];
-                    for (int candidate = 0; candidate < size; candidate++) {
-                    	candidates[candidate] = isCandidate(row, col,candidate + 1);
-                    }
-                    cell.put("candidates", candidates);
-                    grid.put("cell", cell);
+        int size = getSize();
+        Map<String, Object> sudoku = new HashMap<String,Object>();
+        sudoku.put("size",size);
+        Map<String, Object> grid = new HashMap<String,Object>();
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size; col++) {
+            	Map<String, Object> cell = new HashMap<String,Object>();
+            	cell.put("row", row);
+            	cell.put("col", col);
+            	cell.put("val", getCell(row,col).getValue());
+            	cell.put("isGiven", getCell(row,col).isGiven());
+            	cell.put("isSet", getCell(row,col).isSet());
+                boolean[] candidates = new boolean[size];
+                for (int candidate = 0; candidate < size; candidate++) {
+                	candidates[candidate] = isCandidate(row, col,candidate + 1);
+                }
+                cell.put("candidates", candidates);
+                grid.put("cell"+row+col, cell);
             }
         }
         sudoku.put("grid", grid);

@@ -333,6 +333,18 @@ public class GridTest {
     	assertTrue(grid9.createStrategy instanceof RandomGridCreateStrategy);
     	grid9.create();
     }
+    
+    @Test
+    public void testToJson() {
+    	String json1 = grid1.toJson();
+    	assertTrue(json1.contains("cell00"));
+    	String json4 = grid4.toJson();
+    	assertTrue(json4.contains("cell01"));
+    	assertTrue(json4.contains("cell02"));
+    	assertTrue(json4.contains("cell10"));
+    	assertTrue(json4.contains("cell22"));
+    	assertTrue(json4.contains("cell33"));
+    }
 
 
     /* Methods */
