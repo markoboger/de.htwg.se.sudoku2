@@ -281,24 +281,30 @@ public class Grid implements IGrid{
         int size = getSize();
         Map<String, Object> sudoku = new HashMap<String,Object>();
         sudoku.put("size",size);
-        Map<String, Object> grid = new HashMap<String,Object>();
+        List<HashMap<String,Object>> grid = new ArrayList<HashMap<String,Object>>();
+        
         for (int row = 0; row < size; row++) {
-            for (int col = 0; col < size; col++) {
+            for (int column = 0; column < size; column++) {
             	Map<String, Object> cell = new HashMap<String,Object>();
             	cell.put("row", row);
-            	cell.put("col", col);
-            	cell.put("val", getCell(row,col).getValue());
-            	cell.put("isGiven", getCell(row,col).isGiven());
-            	cell.put("isSet", getCell(row,col).isSet());
-                boolean[] candidates = new boolean[size];
-                for (int candidate = 0; candidate < size; candidate++) {
-                	candidates[candidate] = isCandidate(row, col,candidate + 1);
-                }
-                cell.put("candidates", candidates);
-                grid.put("cell"+row+col, cell);
+            	cell.put("column", column);
+            	cell.put("value", getCell(row,column).getValue());
+            	if (getCell(row,column).isGiven()) {
+            		cell.put("status", "given");
+            	} else cell.put("status", "normal");
+            	cell.put("isSet", getCell(row,column).isSet());
+            	if (getCell(row,column).isUnSet()) {
+            		boolean[] candidates = new boolean[size];
+	                for (int candidate = 0; candidate < size; candidate++) {
+	                	candidates[candidate] = isCandidate(row, column,candidate + 1);
+	                }
+	                cell.put("candidates", candidates);
+            	}
+                grid.add((HashMap<String, Object>) cell);
             }
+            sudoku.put("grid", grid);
         }
-        sudoku.put("grid", grid);
+        
 
         ObjectMapper mapper = new ObjectMapper();
         try {
