@@ -293,7 +293,7 @@ public class Grid implements IGrid{
             		cell.put("status", "given");
             	} else cell.put("status", "normal");
             	cell.put("isSet", getCell(row,column).isSet());
-            	if (getCell(row,column).isUnSet()) {
+            	if (getCell(row,column).isUnSet() && getCell(row,column).isShowCandidates()) {
             		boolean[] candidates = new boolean[size];
 	                for (int candidate = 0; candidate < size; candidate++) {
 	                	candidates[candidate] = isCandidate(row, column,candidate + 1);
