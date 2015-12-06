@@ -305,6 +305,17 @@ public class Grid implements IGrid{
 	                }
 	                cell.put("candidates", candidates);
             	}
+            	String blockname = "";
+
+                if (row % blockSize == 0) {blockname = "N";};
+                if (row % blockSize == 1) {blockname = "";};
+                if (row % blockSize == 2) {blockname = "S";};
+                if (column % blockSize == 0) {blockname = blockname + "W";};
+                if (column % blockSize == 1) {blockname = blockname + "";};
+                if (column % blockSize == 2) {blockname = blockname + "E";};
+                if (blockname == "") {blockname = "C";};
+                blockname = blockname + "block";
+                cell.put("blockname", blockname);
                 grid.add( (HashMap<String, Object>) cell);
             }
             sudoku.put("grid", grid);
