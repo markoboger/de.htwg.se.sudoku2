@@ -13,6 +13,7 @@ public enum  GameStatus {
     SHOW_CANDIDATES,
     SOLVE_SUCCESS,
     SOLVE_FAIL,
+    SOLVED,
     REDO, 
     UNDO,
     COPY,

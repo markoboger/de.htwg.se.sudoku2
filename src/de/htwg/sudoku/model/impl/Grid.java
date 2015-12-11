@@ -326,7 +326,7 @@ public class Grid implements IGrid{
         try {
 			result = mapper.writeValueAsString(sudoku);
 		} catch (JsonProcessingException e) {
-			LOGGER.info("JSON conversion failed");
+			LOGGER.info("JSON conversion failed", e);
 		}
 
         return result;

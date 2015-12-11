@@ -77,6 +77,9 @@ public class SudokuController extends Observable implements ISudokuController {
 			status = GameStatus.CELL_SET_FAIL;
 			statusText = cell.mkString();
 		}
+		if (grid.isSolved()) {
+			status = GameStatus.SOLVED;
+		}
 		notifyObservers();
 	}
 

@@ -89,4 +89,9 @@ public interface IGrid {
      */
 	String toJson();
 
+	 /**
+     * Check if the Sudoku puzzle has been solved yet.
+     */
+	boolean isSolved();
+
 }
