@@ -286,6 +286,7 @@ public class Grid implements IGrid{
         for (int row = 0; row < size; row++) {
             for (int column = 0; column < size; column++) {
             	Map<String, Object> cell = new HashMap<String,Object>();
+            	cell.put("id", row*10+column);
             	cell.put("row", row);
             	cell.put("column", column);
             	cell.put("value", getCell(row,column).getValue());
@@ -294,13 +295,28 @@ public class Grid implements IGrid{
             	} else cell.put("status", "normal");
             	cell.put("isSet", getCell(row,column).isSet());
             	if (getCell(row,column).isUnSet() && getCell(row,column).isShowCandidates()) {
-            		boolean[] candidates = new boolean[size];
+            		String[] candidates = new String[size];
 	                for (int candidate = 0; candidate < size; candidate++) {
-	                	candidates[candidate] = isCandidate(row, column,candidate + 1);
+	                	if (isCandidate(row, column,candidate + 1)) {
+	                		candidates[candidate] = ""+(candidate + 1);
+	                	} else {
+	                		candidates[candidate]=""+(-candidate-1);
+	                	}
 	                }
 	                cell.put("candidates", candidates);
             	}
-                grid.add((HashMap<String, Object>) cell);
+            	String blockname = "";
+
+                if (row % blockSize == 0) {blockname = "N";};
+                if (row % blockSize == 1) {blockname = "";};
+                if (row % blockSize == 2) {blockname = "S";};
+                if (column % blockSize == 0) {blockname = blockname + "W";};
+                if (column % blockSize == 1) {blockname = blockname + "";};
+                if (column % blockSize == 2) {blockname = blockname + "E";};
+                if (blockname == "") {blockname = "C";};
+                blockname = blockname + "block";
+                cell.put("blockname", blockname);
+                grid.add( (HashMap<String, Object>) cell);
             }
             sudoku.put("grid", grid);
         }
