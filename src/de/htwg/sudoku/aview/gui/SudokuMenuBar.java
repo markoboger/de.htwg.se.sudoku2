@@ -26,8 +26,8 @@ import org.apache.logging.log4j.Logger;
 
 import de.htwg.sudoku.controller.ISudokuController;
 
-public class SudokuMenu {
-    private static final Logger LOGGER = LogManager.getLogger(SudokuMenu.class.getName());
+public class SudokuMenuBar extends JMenuBar{
+    private static final Logger LOGGER = LogManager.getLogger(SudokuMenuBar.class.getName());
 
 	private static final int SIZE_1BY1 = 1;
 	private static final int SIZE_4BY4 = 4;
@@ -36,8 +36,6 @@ public class SudokuMenu {
 
 	
 	ISudokuController controller;
-	
-	JMenuBar menuBar;
 
 	JMenu fileMenu;
 	JMenuItem newMenuItem, loadMenuItem, saveMenuItem, quitMenuItem;
@@ -54,19 +52,13 @@ public class SudokuMenu {
 	JMenu optionsMenu;
 	JMenuItem showMenuItem, resize9MenuItem, resize4MenuItem, resize1MenuItem;
 
-	public SudokuMenu(ISudokuController controller, JFrame frame) {
+	public SudokuMenuBar(ISudokuController controller, JFrame frame) {
 		this.controller = controller;
-		menuBar = new JMenuBar();
-
 		createFileMenu(controller, frame);
 		createEditMenu(controller);
 		createSolveMenu(controller);
 		createHighlightMenu(controller);
-		createOptionsMenu(controller);
-
-		menuBar.add(optionsMenu);
-		frame.setJMenuBar(menuBar);
-		
+		createOptionsMenu(controller);		
 	}
 
 	private void createOptionsMenu(ISudokuController controller) {
@@ -114,6 +106,7 @@ public class SudokuMenu {
 		});
 		resize1MenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_PERIOD, 0));
 		optionsMenu.add(resize1MenuItem);
+		this.add(optionsMenu);
 	}
 
 	private void createHighlightMenu(ISudokuController controller) {
@@ -151,7 +144,7 @@ public class SudokuMenu {
 			});
 		}
 
-		menuBar.add(digitMenu);
+		this.add(digitMenu);
 	}
 
 	private void createSolveMenu(ISudokuController controller) {
@@ -169,7 +162,7 @@ public class SudokuMenu {
 		solveMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F12, 0));
 
 		solveMenu.add(solveMenuItem);
-		menuBar.add(solveMenu);
+		this.add(solveMenu);
 	}
 
 	private void createEditMenu(ISudokuController controller) {
@@ -225,7 +218,7 @@ public class SudokuMenu {
 		pasteMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_DOWN_MASK));
 		editMenu.add(pasteMenuItem);
 
-		menuBar.add(editMenu);
+		this.add(editMenu);
 	}
 
 	private void createFileMenu(ISudokuController controller, JFrame frame) {
@@ -283,7 +276,7 @@ public class SudokuMenu {
 		});
 		fileMenu.add(quitMenuItem);
 
-		menuBar.add(fileMenu);
+		this.add(fileMenu);
 	}
 	
 	public void load(JFrame frame) {

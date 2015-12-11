@@ -29,16 +29,13 @@ public class SudokuFrame extends JFrame implements IObserver {
 		this.controller = controller;
 		controller.addObserver(this);
 
-
 		setTitle("HTWG Sudoku");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(DEFAULT_X, DEFAULT_Y);
+		setJMenuBar(new SudokuMenuBar(controller, this));
 		pane = getContentPane();
-		pane.setLayout(new BorderLayout());
-
-		new SudokuMenu(controller, this);
+		pane.setLayout(new BorderLayout());	
 		constructSudokuPane(controller);
-
 	}
 
 	public final void constructSudokuPane(ISudokuController controller) {
