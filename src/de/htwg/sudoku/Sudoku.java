@@ -13,7 +13,6 @@ public final class Sudoku {
 	/* Fields */
 	private static Scanner scanner;
 	private TextUI tui;
-	@SuppressWarnings("unused")
 	private SudokuFrame gui;
 	protected ISudokuController controller;
 	private static Sudoku instance = null;
@@ -45,6 +44,10 @@ public final class Sudoku {
 	public TextUI getTui() {
 		return tui;
 	}
+	
+	public SudokuFrame getGui() {
+		return gui;
+	}
     
     public ISudokuController getController() {
     	return controller;
@@ -63,6 +66,7 @@ public final class Sudoku {
 				continu = game.tui.processInputLine(scanner.next());
 			}
 		} else {
+			// read arguments from the args input parameters. Used for integration tests only!!!
 			for (String input : args) {
 				game.tui.processInputLine(input);
 			}

@@ -27,7 +27,10 @@ import org.apache.logging.log4j.Logger;
 import de.htwg.sudoku.controller.ISudokuController;
 
 public class SudokuMenuBar extends JMenuBar{
-    private static final Logger LOGGER = LogManager.getLogger(SudokuMenuBar.class.getName());
+
+	private static final long serialVersionUID = -4482501416575327082L;
+
+	private static final Logger LOGGER = LogManager.getLogger(SudokuMenuBar.class.getName());
 
 	private static final int SIZE_1BY1 = 1;
 	private static final int SIZE_4BY4 = 4;
